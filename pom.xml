@@ -195,6 +195,7 @@
     <module>domains/notification/twitter/service-unit</module>
     <module>domains/report/plaintext/service-unit</module>
     <module>domains/issues/trac/service-unit</module>
+    <module>domains/issues/github/service-unit</module>
 
     <!-- Packaging Modules -->
     <module>package/all</module>
@@ -215,7 +216,9 @@
     <module>features/link/http-jms/service-unit</module>
     <module>features/link/http-processor/service-engine</module>
     <module>features/link/http-processor/service-unit</module>
-    
+
+    <!-- Issues -->
+    <module>domains/issues/common</module>
   </modules>
 
   <inceptionYear>2009</inceptionYear>
@@ -899,6 +902,17 @@
         <artifactId>openengsb-domains-deploy-maven-se</artifactId>
         <version>${pom.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.openengsb</groupId>
+        <artifactId>openengsb-domains-issues-trac-se</artifactId>
+        <version>${pom.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.openengsb</groupId>
+        <artifactId>openengsb-domains-issues-github-su</artifactId>
+        <version>${pom.version}</version>
+      </dependency>
+
 
       <!-- Connectors -->
       <dependency>
