@@ -1,43 +1,42 @@
 package org.openengsb.issues.github;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
-import javax.ws.rs.core.MediaType;
+import java.util.List;
 
-import org.apache.wink.client.Resource;
-import org.apache.wink.client.RestClient;
 import org.junit.Test;
-
-import com.google.gson.Gson;
+import org.springframework.test.context.ContextConfiguration;
 
 public class GithubServiceWinkTest {
 
-	@Test
-	public void test() {
-		RestClient restClient = new RestClient();
-		Resource resource = restClient
-				.resource("http://github.com/api/v2/json/issues/show/openengsb/openengsb/1");
-		String result = resource.accept(MediaType.APPLICATION_JSON).get(
-				String.class);
-		System.out.println(result);
-		Gson gson = new Gson();
-		GithubIssue issue = gson.fromJson(result, GithubIssue.class);
-		System.out.println(issue.toString());
-	}
+	GithubService githubService = new GithubServiceWink();
 
 	@Test
 	public void testGetIssue() {
-		fail("Not yet implemented");
+		GithubIssue issue = this.githubService.getIssue("openengsb",
+				"openengsb", 1);
+		assertNotNull(issue);
+		assertEquals("eyeball", issue.getUser());
 	}
 
 	@Test
 	public void testGetIssueComments() {
-		fail("Not yet implemented");
+		List<GithubComment> issueComments = this.githubService
+				.getIssueComments("openengsb", "openengsb", 5);
+		assertNotNull(issueComments);
+		assertEquals(2, issueComments.size());
+		assertEquals("eyeball", issueComments.get(0).getUser());
 	}
 
 	@Test
 	public void testGetIssues() {
-		fail("Not yet implemented");
+		List<GithubIssue> githubIssues = this.githubService.getIssues(
+				"openengsb", "openengsb", "open");
+		assertNotNull(githubIssues);
+		assertTrue(githubIssues.size() > 5);
+		assertNotNull(githubIssues.get(0).getCreated_at());
 	}
 
 }
