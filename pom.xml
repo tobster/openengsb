@@ -181,6 +181,7 @@
     <module>domains/notification/twitter/service-engine</module>
     <module>domains/report/plaintext/service-engine</module>
     <module>domains/issues/trac/service-engine</module>
+    <module>domains/issues/github/service-engine</module>
     <module>domains/test/maven/service-engine</module>
     <module>domains/build/maven/service-engine</module>
     <module>domains/deploy/maven/service-engine</module>
@@ -195,7 +196,6 @@
     <module>domains/notification/twitter/service-unit</module>
     <module>domains/report/plaintext/service-unit</module>
     <module>domains/issues/trac/service-unit</module>
-    <module>domains/issues/github/service-unit</module>
 
     <!-- Packaging Modules -->
     <module>package/all</module>

@@ -26,9 +26,9 @@
 		<relativePath>../../../..</relativePath>
 	</parent>
 
-	<artifactId>openengsb-domains-issues-github-su</artifactId>
-	<name>openengsb-domains-issues-github-su</name>
-	<packaging>jbi-service-unit</packaging>
+	<artifactId>openengsb-domains-issues-github-se</artifactId>
+	<name>openengsb-domains-issues-github-se</name>
+	<packaging>jbi-component</packaging>
 
 	<dependencies>
 		<dependency>
@@ -56,6 +56,7 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>0.9.2</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- Springframework dependencies -->
@@ -77,13 +78,7 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 		</dependency>
-
-		<!--  servicemix depedencies -->
-		<dependency>
-			<groupId>org.apache.servicemix</groupId>
-			<artifactId>servicemix-http</artifactId>
-		</dependency>
-
+		
 		<!-- test dependencies -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -101,4 +96,17 @@
 			<url>http://projectlombok.org/mavenrepo</url>
 		</repository>
 	</repositories>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.servicemix.tooling</groupId>
+        <artifactId>jbi-maven-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <type>service-engine</type>
+          <component>org.openengsb.twitter.TwitterComponent</component>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
