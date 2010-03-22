@@ -30,7 +30,7 @@ import org.openengsb.issues.github.util.DateTimeTypeConverter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class GithubServiceWink implements GithubService {
+public class GithubServiceWinkRestFrameworkImpl implements GithubService {
 
     private RestClient restClient = new RestClient();
     private GsonBuilder gsonBuilder = new GsonBuilder();
@@ -42,7 +42,7 @@ public class GithubServiceWink implements GithubService {
     private static final String COMMENTS = "comments";
     private static final String LIST = "list";
 
-    public GithubServiceWink() {
+    public GithubServiceWinkRestFrameworkImpl() {
         gsonBuilder.registerTypeAdapter(DateTime.class, new DateTimeTypeConverter());
         gson = gsonBuilder.create();
     }

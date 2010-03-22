@@ -24,9 +24,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-public class GithubServiceWinkTest {
+public class GithubServiceWinkRestFrameworkImplTest {
 
-    GithubService githubService = new GithubServiceWink();
+    GithubService githubService = new GithubServiceWinkRestFrameworkImpl();
 
     @Test
     public void testGetIssue() {
