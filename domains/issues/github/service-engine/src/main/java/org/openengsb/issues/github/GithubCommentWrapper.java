@@ -22,5 +22,5 @@ import lombok.Data;
 
 @Data
 public class GithubCommentWrapper {
-	private List<GithubComment> comments;
+    private List<GithubComment> comments;
 }

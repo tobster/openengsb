@@ -22,5 +22,5 @@ import lombok.Data;
 
 @Data
 public class GithubIssuesWrapper {
-	private List<GithubIssue> issues;
+    private List<GithubIssue> issues;
 }

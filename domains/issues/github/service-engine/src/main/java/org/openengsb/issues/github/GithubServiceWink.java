@@ -32,65 +32,45 @@ import com.google.gson.GsonBuilder;
 
 public class GithubServiceWink implements GithubService {
 
-	private RestClient restClient = new RestClient();
-	private GsonBuilder gsonBuilder = new GsonBuilder();
-	private Gson gson;
+    private RestClient restClient = new RestClient();
+    private GsonBuilder gsonBuilder = new GsonBuilder();
+    private Gson gson;
 
-	private static final String SHOW = "show";
-	private static final String ISSUES = "issues";
-	private static final String BASEURL = "http://github.com/api/v2/json/";
-	private static final String COMMENTS = "comments";
-	private static final String LIST = "list";
+    private static final String SHOW = "show";
+    private static final String ISSUES = "issues";
+    private static final String BASEURL = "http://github.com/api/v2/json/";
+    private static final String COMMENTS = "comments";
+    private static final String LIST = "list";
 
-	public GithubServiceWink() {
-		gsonBuilder.registerTypeAdapter(DateTime.class,
-				new DateTimeTypeConverter());
-		gson = gsonBuilder.create();
-	}
+    public GithubServiceWink() {
+        gsonBuilder.registerTypeAdapter(DateTime.class, new DateTimeTypeConverter());
+        gson = gsonBuilder.create();
+    }
 
-	@Override
-	public GithubIssue getIssue(String user, String project, long id) {
-		URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(SHOW)
-				.path(user).path(project).path(String.valueOf(id)).build();
+    private <T> T requestandmarshal(URI uri, Class<T> clazz) {
+        Resource resource = this.restClient.resource(uri).accept(MediaType.APPLICATION_JSON);
+        String result = resource.get(String.class);
+        return this.gson.fromJson(result, clazz);
+    }
 
-		Resource resource = this.restClient.resource(uri);
+    @Override
+    public GithubIssue getIssue(String user, String project, long id) {
+        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(SHOW).path(user).path(project).path(String.valueOf(id))
+                .build();
+        return requestandmarshal(uri, GithubIssueWrapper.class).getIssue();
+    }
 
-		String result = resource.accept(MediaType.APPLICATION_JSON).get(
-				String.class);
+    @Override
+    public List<GithubComment> getIssueComments(String user, String project, long id) {
+        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(COMMENTS).path(user).path(project).path(
+                String.valueOf(id)).build();
+        return requestandmarshal(uri, GithubCommentWrapper.class).getComments();
+    }
 
-		gsonBuilder.registerTypeAdapter(DateTime.class,
-				new DateTimeTypeConverter());
-
-		return this.gson.fromJson(result, GithubIssueWrapper.class).getIssue();
-	}
-
-	@Override
-	public List<GithubComment> getIssueComments(String user, String project,
-			long id) {
-		URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(COMMENTS).path(
-				user).path(project).path(String.valueOf(id)).build();
-
-		Resource resource = this.restClient.resource(uri);
-
-		String result = resource.accept(MediaType.APPLICATION_JSON).get(
-				String.class);
-
-		return this.gson.fromJson(result, GithubCommentWrapper.class)
-				.getComments();
-	}
-
-	@Override
-	public List<GithubIssue> getIssues(String user, String project, String state) {
-		URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(LIST).path(
-				user).path(project).path(state).build();
-
-		Resource resource = this.restClient.resource(uri);
-
-		String result = resource.accept(MediaType.APPLICATION_JSON).get(
-				String.class);
-
-		return this.gson.fromJson(result, GithubIssuesWrapper.class)
-				.getIssues();
-	}
+    @Override
+    public List<GithubIssue> getIssues(String user, String project, String state) {
+        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(LIST).path(user).path(project).path(state).build();
+        return requestandmarshal(uri, GithubIssuesWrapper.class).getIssues();
+    }
 
 }

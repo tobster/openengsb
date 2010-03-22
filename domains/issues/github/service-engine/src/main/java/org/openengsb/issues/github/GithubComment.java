@@ -25,6 +25,6 @@ public class GithubComment {
 	private DateTime created_at;
 	private String body;
 	private DateTime updated_at;
-	private long id;
-	private String user;
+    private long id;
+    private String user;
 }

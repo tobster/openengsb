@@ -26,32 +26,29 @@ import org.junit.Test;
 
 public class GithubServiceWinkTest {
 
-	GithubService githubService = new GithubServiceWink();
+    GithubService githubService = new GithubServiceWink();
 
-	@Test
-	public void testGetIssue() {
-		GithubIssue issue = this.githubService.getIssue("openengsb",
-				"openengsb", 1);
-		assertNotNull(issue);
-		assertEquals("eyeball", issue.getUser());
-	}
+    @Test
+    public void testGetIssue() {
+        GithubIssue issue = this.githubService.getIssue("openengsb", "openengsb", 1);
+        assertNotNull(issue);
+        assertEquals("eyeball", issue.getUser());
+    }
 
-	@Test
-	public void testGetIssueComments() {
-		List<GithubComment> issueComments = this.githubService
-				.getIssueComments("openengsb", "openengsb", 5);
-		assertNotNull(issueComments);
-		assertEquals(2, issueComments.size());
-		assertEquals("eyeball", issueComments.get(0).getUser());
-	}
+    @Test
+    public void testGetIssueComments() {
+        List<GithubComment> issueComments = this.githubService.getIssueComments("openengsb", "openengsb", 5);
+        assertNotNull(issueComments);
+        assertEquals(2, issueComments.size());
+        assertEquals("eyeball", issueComments.get(0).getUser());
+    }
 
-	@Test
-	public void testGetIssues() {
-		List<GithubIssue> githubIssues = this.githubService.getIssues(
-				"openengsb", "openengsb", "open");
-		assertNotNull(githubIssues);
-		assertTrue(githubIssues.size() > 5);
-		assertNotNull(githubIssues.get(0).getCreated_at());
-	}
+    @Test
+    public void testGetIssues() {
+        List<GithubIssue> githubIssues = this.githubService.getIssues("openengsb", "openengsb", "open");
+        assertNotNull(githubIssues);
+        assertTrue(githubIssues.size() > 5);
+        assertNotNull(githubIssues.get(0).getCreated_at());
+    }
 
 }
