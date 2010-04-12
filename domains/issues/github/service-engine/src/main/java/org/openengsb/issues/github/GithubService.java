@@ -20,10 +20,12 @@ import java.util.List;
 
 public interface GithubService {
 
-    List<GithubIssue> getIssues(String user, String project, String state);
+    List<GithubIssue> getIssues(String repositoryUser, String project, String state);
 
-    GithubIssue getIssue(String user, String project, long id);
+    GithubIssue getIssue(String repositoryUser, String project, long id);
 
-    List<GithubComment> getIssueComments(String user, String project, long id);
+    List<GithubComment> getIssueComments(String repositoryUser, String project, long id);
+
+    GithubIssue createIssue(String repositoryUser, String project, GithubIssue issue);
 
 }

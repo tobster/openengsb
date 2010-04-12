@@ -35,12 +35,17 @@ public class GithubServiceWinkRestFrameworkImpl implements GithubService {
     private RestClient restClient = new RestClient();
     private GsonBuilder gsonBuilder = new GsonBuilder();
     private Gson gson;
+    private String user = "tobster";
+    private String token = "10de2266bdec9af9739c973ddac1a17f";
 
     private static final String SHOW = "show";
     private static final String ISSUES = "issues";
+    private static final String LIST = "list";
+    private static final String OPEN = "open";
     private static final String BASEURL = "http://github.com/api/v2/json/";
     private static final String COMMENTS = "comments";
-    private static final String LIST = "list";
+    private static final String LONGIN = "login";
+    private static final String TOKEN = "token";
 
     public GithubServiceWinkRestFrameworkImpl() {
         gsonBuilder.registerTypeAdapter(DateTime.class, new DateTimeTypeConverter());
@@ -54,23 +59,35 @@ public class GithubServiceWinkRestFrameworkImpl implements GithubService {
     }
 
     @Override
-    public GithubIssue getIssue(String user, String project, long id) {
-        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(SHOW).path(user).path(project).path(String.valueOf(id))
-                .build();
+    public GithubIssue getIssue(String repositoryUser, String project, long id) {
+        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(SHOW).path(repositoryUser).path(project).path(
+                String.valueOf(id)).queryParam(LONGIN, this.user).queryParam(TOKEN, this.token).build();
         return requestandmarshal(uri, GithubIssueWrapper.class).getIssue();
     }
 
     @Override
-    public List<GithubComment> getIssueComments(String user, String project, long id) {
-        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(COMMENTS).path(user).path(project).path(
+    public List<GithubComment> getIssueComments(String repositoryUser, String project, long id) {
+        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(COMMENTS).path(repositoryUser).path(project).path(
                 String.valueOf(id)).build();
         return requestandmarshal(uri, GithubCommentWrapper.class).getComments();
     }
 
     @Override
-    public List<GithubIssue> getIssues(String user, String project, String state) {
-        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(LIST).path(user).path(project).path(state).build();
+    public List<GithubIssue> getIssues(String repositoryUser, String project, String state) {
+        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(LIST).path(repositoryUser).path(project).path(state)
+                .build();
         return requestandmarshal(uri, GithubIssuesWrapper.class).getIssues();
+    }
+
+    @Override
+    public GithubIssue createIssue(String repositoryUser, String project, GithubIssue issue) {
+        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(OPEN).path(repositoryUser).path(project).queryParam(
+                LONGIN, this.user).queryParam(TOKEN, this.token).queryParam("title", issue.getTitle()).queryParam(
+                "body", issue.getBody()).build();
+        Resource resource = this.restClient.resource(uri).accept(MediaType.APPLICATION_JSON);
+        String result = resource.post(String.class, null);
+        System.out.println(result);
+        return this.gson.fromJson(result, GithubIssueWrapper.class).getIssue();
     }
 
 }

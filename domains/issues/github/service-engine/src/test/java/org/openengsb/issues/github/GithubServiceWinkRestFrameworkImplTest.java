@@ -22,6 +22,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class GithubServiceWinkRestFrameworkImplTest {
@@ -49,6 +50,21 @@ public class GithubServiceWinkRestFrameworkImplTest {
         assertNotNull(githubIssues);
         assertTrue(githubIssues.size() > 5);
         assertNotNull(githubIssues.get(0).getCreated_at());
+    }
+
+    @Ignore
+    @Test
+    public void testCreateIssue() {
+        GithubIssue issue = new GithubIssue();
+        issue.setTitle("test-title");
+        issue.setBody("test-body");
+        GithubIssue githubIssuesCreated = this.githubService.createIssue("tobster", "openengsb", issue);
+        assertNotNull(githubIssuesCreated);
+        assertEquals("test-title", githubIssuesCreated.getTitle());
+        assertEquals("test-body", githubIssuesCreated.getBody());
+        GithubIssue githubIssueStored = this.githubService.getIssue("tobster", "openengsb", githubIssuesCreated
+                .getNumber());
+        assertNotNull(githubIssueStored);
     }
 
 }
