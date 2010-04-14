@@ -217,8 +217,6 @@
     <module>features/link/http-processor/service-engine</module>
     <module>features/link/http-processor/service-unit</module>
 
-    <!-- Issues -->
-    <module>domains/issues/common</module>
   </modules>
 
   <inceptionYear>2009</inceptionYear>

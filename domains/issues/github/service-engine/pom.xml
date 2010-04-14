@@ -25,10 +25,6 @@
   <packaging>jbi-component</packaging>
 
   <dependencies>
-    <dependency>
-      <groupId>org.openengsb</groupId>
-      <artifactId>openengsb-domains-issues-common</artifactId>
-    </dependency>
     <!-- Apache Wink Rest Client Support -->
     <dependency>
       <groupId>org.apache.wink</groupId>
