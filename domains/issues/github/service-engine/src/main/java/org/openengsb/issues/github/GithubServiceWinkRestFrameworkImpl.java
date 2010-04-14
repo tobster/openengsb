@@ -22,6 +22,8 @@ import java.util.List;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
 
+import lombok.Setter;
+
 import org.apache.wink.client.Resource;
 import org.apache.wink.client.RestClient;
 import org.joda.time.DateTime;
@@ -35,8 +37,10 @@ public class GithubServiceWinkRestFrameworkImpl implements GithubService {
     private RestClient restClient = new RestClient();
     private GsonBuilder gsonBuilder = new GsonBuilder();
     private Gson gson;
-    private String user = "tobster";
-    private String token = "10de2266bdec9af9739c973ddac1a17f";
+    @Setter
+    private String user;
+    @Setter
+    private String token;
 
     private static final String SHOW = "show";
     private static final String ISSUES = "issues";
