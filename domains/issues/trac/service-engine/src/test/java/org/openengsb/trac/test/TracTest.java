@@ -72,13 +72,13 @@ public class TracTest {
 
     @Test
     public void testAddComment() throws XmlRpcException {
-        tracConnector.addComment(5, "testcomment");
+        tracConnector.addComment("5", "testcomment");
         Mockito.verify(ticket, Mockito.times(1)).update(Mockito.eq(5), Mockito.eq("testcomment"));
     }
 
     @Test
     public void testDeleteIssue() throws XmlRpcException {
-        tracConnector.deleteIssue(5);
+        tracConnector.deleteIssue("5");
         Mockito.verify(ticket, Mockito.times(1)).delete(Mockito.eq(5));
     }
 
@@ -90,7 +90,7 @@ public class TracTest {
         Hashtable<String, String> result = new Hashtable<String, String>();
         result.put(TracFieldConstants.FIELD_STATUS, TracStatusConstants.STATUS_CLOSED);
 
-        tracConnector.updateIssue(3, null, changes);
+        tracConnector.updateIssue("3", null, changes);
         Mockito.verify(ticket, Mockito.times(1)).update(Mockito.eq(3), Mockito.eq("[No comment added by author]"),
                 Mockito.eq(result));
     }
@@ -104,18 +104,33 @@ public class TracTest {
     @Test
     public void testUpdateXmlRpcErrorCatching() throws XmlRpcException {
         Mockito.when(ticket.update(Mockito.anyInt(), Mockito.anyString(), Mockito.any(Hashtable.class))).thenThrow(new XmlRpcException("test"));
-        tracConnector.updateIssue(0, "test", new HashMap<String, Object>());
+        tracConnector.updateIssue("0", "test", new HashMap<String, Object>());
+    }
+    
+    @Test
+    public void testUpdateNuberformatErrorCatching() throws NumberFormatException {
+        tracConnector.updateIssue("test", "test",new HashMap<String, Object>());
     }
     
     @Test
     public void testCommentXmlRpcErrorCatching() throws XmlRpcException {
         Mockito.when(ticket.update(Mockito.anyInt(), Mockito.anyString())).thenThrow(new XmlRpcException("test"));
-        tracConnector.addComment(0, "test");
+        tracConnector.addComment("0", "test");
+    }
+    
+    @Test
+    public void testCommentNuberformatErrorCatching() throws NumberFormatException {
+        tracConnector.addComment("test", "test");
     }
     
     @Test
     public void testDeleteXmlRpcErrorCatching() throws XmlRpcException {
         Mockito.when(ticket.delete(Mockito.anyInt())).thenThrow(new XmlRpcException("test"));
-        tracConnector.deleteIssue(0);
+        tracConnector.deleteIssue("0");
+    }
+    
+    @Test
+    public void testDeleteNuberformatErrorCatching() throws NumberFormatException {
+        tracConnector.deleteIssue("test");
     }
 }

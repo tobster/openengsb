@@ -22,11 +22,11 @@ import java.util.Map;
 import org.openengsb.drools.model.Issue;
 
 public interface IssuesDomain extends Domain {
-    Integer createIssue(Issue issue);
+    String createIssue(Issue issue);
 
-    void updateIssue(Integer id, String comment, Map<String, Object> changes);
+    void updateIssue(String id, String comment, Map<String, Object> changes);
 
-    void deleteIssue(Integer id);
+    void deleteIssue(String id);
 
-    void addComment(Integer id, String comment);
+    void addComment(String id, String comment);
 }

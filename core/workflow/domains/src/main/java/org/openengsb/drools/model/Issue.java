@@ -36,7 +36,7 @@ public class Issue {
     public final static String fieldPRIORITY = "PRIORITY";
     public final static String fieldSTATUS = "STATUS";
 
-    private Integer id;
+    private String id;
     private String summary;
     private String description;
     private String owner;
@@ -44,11 +44,11 @@ public class Issue {
     private String priority;
     private String status;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

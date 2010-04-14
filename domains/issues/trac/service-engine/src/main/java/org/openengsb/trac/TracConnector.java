@@ -35,12 +35,12 @@ public class TracConnector implements IssuesDomain {
     private Ticket ticket;
 
     @Override
-    public Integer createIssue(Issue issue) {
+    public String createIssue(Issue issue) {
         Hashtable<String, String> attributes = generateAttributes(issue);
-        Integer issueId = -1;
+        String issueId = "-1";
 
         try {
-            issueId = ticket.create(issue.getSummary(), issue.getDescription(), attributes);
+            issueId = ticket.create(issue.getSummary(), issue.getDescription(), attributes).toString();
             log.info("Successfully created issue " + issue.getSummary() + ", ID is: " + issueId + ".");
         } catch (XmlRpcException e) {
             log.error("Error creating issue " + issue.getSummary() + ". XMLRPC call failed.");
@@ -50,37 +50,43 @@ public class TracConnector implements IssuesDomain {
     }
 
     @Override
-    public void updateIssue(Integer id, String comment, Map<String, Object> changes) {
+    public void updateIssue(String id, String comment, Map<String, Object> changes) {
         Hashtable<String, String> attributes = translateChanges(changes);
         if (comment == null || comment.equals("")) {
             comment = "[No comment added by author]";
         }
 
         try {
-            ticket.update(id, comment, attributes);
+            ticket.update(Integer.valueOf(id), comment, attributes);
             log.info("Successfully updated issue " + id + " with " + changes.size() + " changes.");
         } catch (XmlRpcException e) {
             log.error("Error updating issue " + id + ". XMLRPC call failed.");
+        } catch (NumberFormatException e) {
+            log.error("Error updating issue " + id + ". invalid id.", e);
         }
     }
 
     @Override
-    public void deleteIssue(Integer id) {
+    public void deleteIssue(String id) {
         try {
-            ticket.delete(id);
+            ticket.delete(Integer.valueOf(id));
             log.info("Successfully deleted issue " + id + ".");
         } catch (XmlRpcException e) {
             log.error("Error deleting issue " + id + ". XMLRPC call failed.");
+        } catch (NumberFormatException e) {
+            log.error("Error updating issue " + id + ". invalid id.", e);
         }
     }
 
     @Override
-    public void addComment(Integer id, String comment) {
+    public void addComment(String id, String comment) {
         try {
-            ticket.update(id, comment);
+            ticket.update(Integer.valueOf(id), comment);
             log.info("Successfully added comment to issue " + id + ".");
         } catch (XmlRpcException e) {
             log.error("Error adding comment to issue " + id + ". XMLRPC call failed.");
+        } catch (NumberFormatException e) {
+            log.error("Error updating issue " + id + ". invalid id.", e);
         }
     }
 
