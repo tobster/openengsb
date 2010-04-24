@@ -57,7 +57,7 @@ public class GithubConnector implements IssuesDomain {
     public void deleteIssue(String id) {
         try {
             this.githubService.changeState(this.repositoryUser, this.project, Long.valueOf(id),
-                    GithubService.STATECLOSE);
+                    GithubService.State.CLOSE);
         } catch (NumberFormatException e) {
             log.error("could not transform id >" + id + "<to long value", e);
         }

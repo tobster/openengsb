@@ -119,7 +119,7 @@ public class GithubServiceWinkRestFrameworkImpl implements GithubService {
     }
 
     @Override
-    public void changeState(String repositoryUser, String project, long id, String state) {
+    public void changeState(String repositoryUser, String project, long id, State state) {
         // TODO Auto-generated method stub
         throw new RuntimeException("not jet implemented");
     }

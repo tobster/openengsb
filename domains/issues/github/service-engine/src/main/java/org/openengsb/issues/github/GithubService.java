@@ -20,9 +20,12 @@ import java.util.List;
 
 public interface GithubService {
     public static final String STATEOPEN = "open";
-    public static final String STATESCLOSE = "close";
+    public static final String STATECLOSE = "close";
     public static final String STATEREOPEN = "reopen";
 
+    public enum State {
+        OPEN,CLOSE,REOPEN
+    }
     List<GithubIssue> getIssues(String repositoryUser, String project, String state);
 
     GithubIssue getIssue(String repositoryUser, String project, long id);
@@ -31,7 +34,7 @@ public interface GithubService {
 
     GithubIssue createIssue(String repositoryUser, String project, GithubIssue issue);
 
-    void changeState(String repositoryUser, String project, long id, String state);
+    void changeState(String repositoryUser, String project, long id, State state);
 
     void editIssue(String repositoryUser, String project, long id, String title, String body);
 

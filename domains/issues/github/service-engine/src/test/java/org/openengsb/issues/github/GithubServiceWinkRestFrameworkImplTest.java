@@ -94,7 +94,7 @@ public class GithubServiceWinkRestFrameworkImplTest {
     }
 
     @Test
-    public void testAddCommentIssue() throws InterruptedException {
+    public void testAddCommentIssue() {
         List<GithubComment> issueComments = githubService.getIssueComments(REPOSITORYUSER, PROJECT, 1);
         assertNotNull(issueComments);
         long time = new Date().getTime();
@@ -105,4 +105,7 @@ public class GithubServiceWinkRestFrameworkImplTest {
         assertEquals("testcomment" + time, issueCommentsafter.get(issueCommentsafter.size()-1).getBody());
     }
     
+    public void testChangeState() {
+        
+    }
 }
