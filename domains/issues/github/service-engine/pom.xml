@@ -25,11 +25,27 @@
   <packaging>jbi-component</packaging>
 
   <dependencies>
+    <!-- OpenEngSB dependencies -->
+    <dependency>
+      <groupId>org.openengsb</groupId>
+      <artifactId>openengsb-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.openengsb</groupId>
+      <artifactId>openengsb-workflow-domains</artifactId>
+    </dependency>
+
     <!-- Apache Wink Rest Client Support -->
     <dependency>
       <groupId>org.apache.wink</groupId>
       <artifactId>wink-client</artifactId>
       <version>1.0-incubating</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-simple</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>

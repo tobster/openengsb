@@ -20,33 +20,43 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Date;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
 public class GithubServiceWinkRestFrameworkImplTest {
 
-    GithubService githubService = new GithubServiceWinkRestFrameworkImpl();
+    private static final String REPOSITORYUSER = "tobster";
+    private static final String PROJECT = "openengsb";
+    GithubServiceWinkRestFrameworkImpl githubService = new GithubServiceWinkRestFrameworkImpl();
+
+    @Before
+    public void init() {
+        githubService.setUser(REPOSITORYUSER);
+        githubService.setToken("2f6d44d5a70f35b958742c57841d4eef");
+    }
 
     @Test
     public void testGetIssue() {
-        GithubIssue issue = this.githubService.getIssue("openengsb", "openengsb", 1);
+        GithubIssue issue = this.githubService.getIssue(PROJECT, PROJECT, 1);
         assertNotNull(issue);
-        assertEquals("eyeball", issue.getUser());
+        assertEquals("anpieber", issue.getUser());
     }
 
     @Test
     public void testGetIssueComments() {
-        List<GithubComment> issueComments = this.githubService.getIssueComments("openengsb", "openengsb", 5);
+        List<GithubComment> issueComments = this.githubService.getIssueComments(PROJECT, PROJECT, 5);
         assertNotNull(issueComments);
         assertEquals(2, issueComments.size());
-        assertEquals("eyeball", issueComments.get(0).getUser());
+        assertEquals("anpieber", issueComments.get(0).getUser());
     }
 
     @Test
     public void testGetIssues() {
-        List<GithubIssue> githubIssues = this.githubService.getIssues("openengsb", "openengsb", "open");
+        List<GithubIssue> githubIssues = this.githubService.getIssues(PROJECT, PROJECT, "open");
         assertNotNull(githubIssues);
         assertTrue(githubIssues.size() > 5);
         assertNotNull(githubIssues.get(0).getCreated_at());
@@ -58,13 +68,41 @@ public class GithubServiceWinkRestFrameworkImplTest {
         GithubIssue issue = new GithubIssue();
         issue.setTitle("test-title");
         issue.setBody("test-body");
-        GithubIssue githubIssuesCreated = this.githubService.createIssue("tobster", "openengsb", issue);
+        GithubIssue githubIssuesCreated = this.githubService.createIssue(REPOSITORYUSER, PROJECT, issue);
         assertNotNull(githubIssuesCreated);
         assertEquals("test-title", githubIssuesCreated.getTitle());
         assertEquals("test-body", githubIssuesCreated.getBody());
-        GithubIssue githubIssueStored = this.githubService.getIssue("tobster", "openengsb", githubIssuesCreated
+        GithubIssue githubIssueStored = this.githubService.getIssue(REPOSITORYUSER, PROJECT, githubIssuesCreated
                 .getNumber());
         assertNotNull(githubIssueStored);
     }
 
+    @Test
+    public void testEditIssue() {
+        GithubIssue oldIssue = githubService.getIssue(REPOSITORYUSER, PROJECT, 1);
+        assertEquals("oldbody", oldIssue.getBody());
+        assertEquals("oldtitle", oldIssue.getTitle());
+
+        githubService.editIssue(REPOSITORYUSER, PROJECT, 1, "changedtitle", "changedbody");
+
+        GithubIssue issue = githubService.getIssue(REPOSITORYUSER, PROJECT, 1);
+        assertNotNull(issue);
+        assertEquals("changedbody", issue.getBody());
+        assertEquals("changedtitle", issue.getTitle());
+        // cleanup
+        githubService.editIssue(REPOSITORYUSER, PROJECT, 1, "oldtitle", "oldbody");
+    }
+
+    @Test
+    public void testAddCommentIssue() throws InterruptedException {
+        List<GithubComment> issueComments = githubService.getIssueComments(REPOSITORYUSER, PROJECT, 1);
+        assertNotNull(issueComments);
+        long time = new Date().getTime();
+        githubService.addComment(REPOSITORYUSER, PROJECT, 1, "testcomment" + time);
+        List<GithubComment> issueCommentsafter = githubService.getIssueComments(REPOSITORYUSER, PROJECT, 1);
+        assertNotNull(issueCommentsafter);
+        assertEquals(issueComments.size() + 1, issueCommentsafter.size());
+        assertEquals("testcomment" + time, issueCommentsafter.get(issueCommentsafter.size()-1).getBody());
+    }
+    
 }

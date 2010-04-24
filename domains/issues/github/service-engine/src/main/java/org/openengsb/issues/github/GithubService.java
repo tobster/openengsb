@@ -19,6 +19,9 @@ package org.openengsb.issues.github;
 import java.util.List;
 
 public interface GithubService {
+    public static final String STATEOPEN = "open";
+    public static final String STATESCLOSE = "close";
+    public static final String STATEREOPEN = "reopen";
 
     List<GithubIssue> getIssues(String repositoryUser, String project, String state);
 
@@ -27,5 +30,11 @@ public interface GithubService {
     List<GithubComment> getIssueComments(String repositoryUser, String project, long id);
 
     GithubIssue createIssue(String repositoryUser, String project, GithubIssue issue);
+
+    void changeState(String repositoryUser, String project, long id, String state);
+
+    void editIssue(String repositoryUser, String project, long id, String title, String body);
+
+    void addComment(String repositoryUser, String project, long id, String comment);
 
 }
