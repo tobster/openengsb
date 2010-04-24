@@ -26,7 +26,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.openengsb.issues.github.GithubService.State;
 
+@Ignore
 public class GithubServiceWinkRestFrameworkImplTest {
 
     private static final String REPOSITORYUSER = "tobster";
@@ -36,7 +38,7 @@ public class GithubServiceWinkRestFrameworkImplTest {
     @Before
     public void init() {
         githubService.setUser(REPOSITORYUSER);
-        githubService.setToken("2f6d44d5a70f35b958742c57841d4eef");
+        githubService.setToken("cant give you my token");
     }
 
     @Test
@@ -62,7 +64,7 @@ public class GithubServiceWinkRestFrameworkImplTest {
         assertNotNull(githubIssues.get(0).getCreated_at());
     }
 
-    @Ignore
+    
     @Test
     public void testCreateIssue() {
         GithubIssue issue = new GithubIssue();
@@ -77,6 +79,7 @@ public class GithubServiceWinkRestFrameworkImplTest {
         assertNotNull(githubIssueStored);
     }
 
+    
     @Test
     public void testEditIssue() {
         GithubIssue oldIssue = githubService.getIssue(REPOSITORYUSER, PROJECT, 1);
@@ -93,6 +96,7 @@ public class GithubServiceWinkRestFrameworkImplTest {
         githubService.editIssue(REPOSITORYUSER, PROJECT, 1, "oldtitle", "oldbody");
     }
 
+    
     @Test
     public void testAddCommentIssue() {
         List<GithubComment> issueComments = githubService.getIssueComments(REPOSITORYUSER, PROJECT, 1);
@@ -105,7 +109,18 @@ public class GithubServiceWinkRestFrameworkImplTest {
         assertEquals("testcomment" + time, issueCommentsafter.get(issueCommentsafter.size()-1).getBody());
     }
     
+    @Test
     public void testChangeState() {
-        
+        GithubIssue issue = githubService.getIssue(REPOSITORYUSER, PROJECT, 1);
+        assertNotNull(issue);
+        assertEquals("closed", issue.getState());
+        githubService.changeState(REPOSITORYUSER, PROJECT, 1, State.OPEN);
+        issue = githubService.getIssue(REPOSITORYUSER, PROJECT, 1);
+        assertNotNull(issue);
+        assertEquals("open", issue.getState());
+        githubService.changeState(REPOSITORYUSER, PROJECT, 1, State.CLOSE);
+        issue = githubService.getIssue(REPOSITORYUSER, PROJECT, 1);
+        assertNotNull(issue);
+        assertEquals("closed", issue.getState());
     }
 }

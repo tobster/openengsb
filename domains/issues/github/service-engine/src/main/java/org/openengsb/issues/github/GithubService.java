@@ -19,13 +19,10 @@ package org.openengsb.issues.github;
 import java.util.List;
 
 public interface GithubService {
-    public static final String STATEOPEN = "open";
-    public static final String STATECLOSE = "close";
-    public static final String STATEREOPEN = "reopen";
-
     public enum State {
-        OPEN,CLOSE,REOPEN
+        OPEN, CLOSE
     }
+
     List<GithubIssue> getIssues(String repositoryUser, String project, String state);
 
     GithubIssue getIssue(String repositoryUser, String project, long id);

@@ -24,8 +24,6 @@ import javax.ws.rs.core.UriBuilder;
 
 import lombok.Setter;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.wink.client.Resource;
 import org.apache.wink.client.RestClient;
 import org.joda.time.DateTime;
@@ -54,8 +52,6 @@ public class GithubServiceWinkRestFrameworkImpl implements GithubService {
     private static final String COMMENTS = "comments";
     private static final String LONGIN = "login";
     private static final String TOKEN = "token";
-    
-    private static final Log log = LogFactory.getLog(GithubServiceWinkRestFrameworkImpl.class);
 
     public GithubServiceWinkRestFrameworkImpl() {
         gsonBuilder.registerTypeAdapter(DateTime.class, new DateTimeTypeConverter());
@@ -78,13 +74,13 @@ public class GithubServiceWinkRestFrameworkImpl implements GithubService {
     @Override
     public List<GithubComment> getIssueComments(String repositoryUser, String project, long id) {
         URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(COMMENTS).path(repositoryUser).path(project).path(
-                String.valueOf(id)).build();
+                String.valueOf(id)).queryParam(LONGIN, this.user).queryParam(TOKEN, this.token).build();
         return requestandmarshal(uri, GithubCommentWrapper.class).getComments();
     }
 
     @Override
     public List<GithubIssue> getIssues(String repositoryUser, String project, String state) {
-        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(LIST).path(repositoryUser).path(project).path(state)
+        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(LIST).path(repositoryUser).path(project).path(state).queryParam(LONGIN, this.user).queryParam(TOKEN, this.token)
                 .build();
         return requestandmarshal(uri, GithubIssuesWrapper.class).getIssues();
     }
@@ -114,13 +110,25 @@ public class GithubServiceWinkRestFrameworkImpl implements GithubService {
                 LONGIN, this.user).queryParam(TOKEN, this.token).queryParam(
                 COMMENT, comment).build();
         Resource resource = this.restClient.resource(uri);
-        log.error(uri);
-        log.error(resource.post(null).getMessage());
+        resource.post(null).getMessage();
     }
 
     @Override
     public void changeState(String repositoryUser, String project, long id, State state) {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("not jet implemented");
+        String action;
+        switch (state) {
+        case CLOSE:
+            action = "close";
+            break;
+        case OPEN:
+            action = "reopen";
+            break;
+        default:
+            return;
+        }
+        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(action).path(repositoryUser).path(project).path(String.valueOf(id)).queryParam(
+                LONGIN, this.user).queryParam(TOKEN, this.token).build();
+        Resource resource = this.restClient.resource(uri);
+        resource.post(null).getMessage();
     }
 }
