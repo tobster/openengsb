@@ -28,7 +28,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.openengsb.issues.github.GithubService.State;
 
-//@Ignore
+@Ignore
 public class GithubServiceWinkRestFrameworkImplTest {
 
     private static final String REPOSITORYUSER = "tobster";
@@ -38,7 +38,7 @@ public class GithubServiceWinkRestFrameworkImplTest {
     @Before
     public void init() {
         githubService.setUser(REPOSITORYUSER);
-        githubService.setToken("8440443e59dc5ec0a510b6e6db6e1d0b");
+        githubService.setToken("grr token ...");
     }
 
     @Test
