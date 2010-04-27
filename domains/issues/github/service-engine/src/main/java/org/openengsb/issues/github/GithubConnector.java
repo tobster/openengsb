@@ -17,25 +17,15 @@
 package org.openengsb.issues.github;
 
 import java.util.Map;
-
-import lombok.Getter;
-import lombok.Setter;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openengsb.drools.IssuesDomain;
 import org.openengsb.drools.model.Issue;
 
 public class GithubConnector implements IssuesDomain {
-
     private final Log log = LogFactory.getLog(this.getClass());
-    @Setter
     private GithubService githubService;
-    @Getter
-    @Setter
     private String repositoryUser;
-    @Getter
-    @Setter
     private String project;
 
     @Override
@@ -61,7 +51,6 @@ public class GithubConnector implements IssuesDomain {
         } catch (NumberFormatException e) {
             log.error("could not transform id >" + id + "<to long value", e);
         }
-
     }
 
     @Override
@@ -119,5 +108,25 @@ public class GithubConnector implements IssuesDomain {
             result.append(value);
             result.append("]");
         }
+    }
+
+    public void setGithubService(final GithubService githubService) {
+        this.githubService = githubService;
+    }
+
+    public String getRepositoryUser() {
+        return repositoryUser;
+    }
+
+    public void setRepositoryUser(final String repositoryUser) {
+        this.repositoryUser = repositoryUser;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
+    public void setProject(final String project) {
+        this.project = project;
     }
 }

@@ -18,30 +18,21 @@ package org.openengsb.issues.github;
 
 import java.net.URI;
 import java.util.List;
-
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
-
-import lombok.Setter;
-
 import org.apache.wink.client.Resource;
 import org.apache.wink.client.RestClient;
 import org.joda.time.DateTime;
 import org.openengsb.issues.github.util.DateTimeTypeConverter;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class GithubServiceWinkRestFrameworkImpl implements GithubService {
-
     private RestClient restClient = new RestClient();
     private GsonBuilder gsonBuilder = new GsonBuilder();
     private Gson gson;
-    @Setter
     private String user;
-    @Setter
     private String token;
-
     private static final String SHOW = "show";
     private static final String ISSUES = "issues";
     private static final String LIST = "list";
@@ -80,8 +71,8 @@ public class GithubServiceWinkRestFrameworkImpl implements GithubService {
 
     @Override
     public List<GithubIssue> getIssues(String repositoryUser, String project, String state) {
-        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(LIST).path(repositoryUser).path(project).path(state).queryParam(LONGIN, this.user).queryParam(TOKEN, this.token)
-                .build();
+        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(LIST).path(repositoryUser).path(project).path(state)
+                .queryParam(LONGIN, this.user).queryParam(TOKEN, this.token).build();
         return requestandmarshal(uri, GithubIssuesWrapper.class).getIssues();
     }
 
@@ -94,21 +85,21 @@ public class GithubServiceWinkRestFrameworkImpl implements GithubService {
         String result = resource.post(String.class, null);
         return this.gson.fromJson(result, GithubIssueWrapper.class).getIssue();
     }
-    
+
     @Override
     public void editIssue(String repositoryUser, String project, long id, String title, String body) {
-        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(EDIT).path(repositoryUser).path(project).path(String.valueOf(id)).queryParam(
-                LONGIN, this.user).queryParam(TOKEN, this.token).queryParam("title",title).queryParam(
-                "body", body).build();
+        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(EDIT).path(repositoryUser).path(project).path(
+                String.valueOf(id)).queryParam(LONGIN, this.user).queryParam(TOKEN, this.token).queryParam("title",
+                title).queryParam("body", body).build();
         Resource resource = this.restClient.resource(uri);
         resource.post(null);
     }
 
     @Override
     public void addComment(String repositoryUser, String project, long id, String comment) {
-        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(COMMENT).path(repositoryUser).path(project).path(String.valueOf(id)).queryParam(
-                LONGIN, this.user).queryParam(TOKEN, this.token).queryParam(
-                COMMENT, comment).build();
+        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(COMMENT).path(repositoryUser).path(project).path(
+                String.valueOf(id)).queryParam(LONGIN, this.user).queryParam(TOKEN, this.token).queryParam(COMMENT,
+                comment).build();
         Resource resource = this.restClient.resource(uri);
         resource.post(null).getMessage();
     }
@@ -120,15 +111,26 @@ public class GithubServiceWinkRestFrameworkImpl implements GithubService {
         case CLOSE:
             action = "close";
             break;
+
         case OPEN:
             action = "reopen";
             break;
+
         default:
             return;
+
         }
-        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(action).path(repositoryUser).path(project).path(String.valueOf(id)).queryParam(
-                LONGIN, this.user).queryParam(TOKEN, this.token).build();
+        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(action).path(repositoryUser).path(project).path(
+                String.valueOf(id)).queryParam(LONGIN, this.user).queryParam(TOKEN, this.token).build();
         Resource resource = this.restClient.resource(uri);
         resource.post(null).getMessage();
+    }
+
+    public void setUser(final String user) {
+        this.user = user;
+    }
+
+    public void setToken(final String token) {
+        this.token = token;
     }
 }

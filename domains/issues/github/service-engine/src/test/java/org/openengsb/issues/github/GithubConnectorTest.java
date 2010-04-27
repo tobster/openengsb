@@ -58,7 +58,7 @@ public class GithubConnectorTest {
         githubIssue.setTitle("title");
         githubIssue.setBody("body\n\n[STATUS -> NEW]\n[PRIORITY -> HIGH]\n[REPORTER -> testreporter]");
         githubIssue.setUser("user");
-        when(githubService.createIssue("testUser", "testProject", githubIssue)).thenReturn(githubIssue);
+        when(githubService.createIssue(anyString(), anyString(), any(GithubIssue.class))).thenReturn(githubIssue);
 
         Issue issue = new Issue();
         issue.setSummary("title");
@@ -110,8 +110,7 @@ public class GithubConnectorTest {
         changes.put(Issue.fieldREPORTER, "testreporter");
         changes.put(Issue.fieldSTATUS, null);
         githubConnector.updateIssue("1", "test commment", changes);
-        verify(githubService, times(1)).editIssue("testUser", "testProject", 1, null,
-                "\n[REPORTER -> testreporter]");
+        verify(githubService, times(1)).editIssue("testUser", "testProject", 1, null, "\n[REPORTER -> testreporter]");
         verify(githubService, times(1)).addComment("testUser", "testProject", 1, "test commment");
     }
 

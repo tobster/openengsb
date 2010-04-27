@@ -16,9 +16,22 @@
  */
 package org.openengsb.issues.github;
 
-import lombok.Data;
-
-@Data
 public class GithubIssueWrapper {
     private GithubIssue issue;
+
+    public GithubIssueWrapper() {
+    }
+
+    public GithubIssue getIssue() {
+        return issue;
+    }
+
+    public void setIssue(final GithubIssue issue) {
+        this.issue = issue;
+    }
+
+    @Override
+    public java.lang.String toString() {
+        return "GithubIssueWrapper(issue=" + issue + ")";
+    }
 }

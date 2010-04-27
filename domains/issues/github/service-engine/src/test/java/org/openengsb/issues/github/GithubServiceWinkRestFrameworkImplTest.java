@@ -28,7 +28,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.openengsb.issues.github.GithubService.State;
 
-@Ignore
+//@Ignore
 public class GithubServiceWinkRestFrameworkImplTest {
 
     private static final String REPOSITORYUSER = "tobster";
@@ -38,7 +38,7 @@ public class GithubServiceWinkRestFrameworkImplTest {
     @Before
     public void init() {
         githubService.setUser(REPOSITORYUSER);
-        githubService.setToken("cant give you my token");
+        githubService.setToken("8440443e59dc5ec0a510b6e6db6e1d0b");
     }
 
     @Test
@@ -64,7 +64,6 @@ public class GithubServiceWinkRestFrameworkImplTest {
         assertNotNull(githubIssues.get(0).getCreated_at());
     }
 
-    
     @Test
     public void testCreateIssue() {
         GithubIssue issue = new GithubIssue();
@@ -79,7 +78,6 @@ public class GithubServiceWinkRestFrameworkImplTest {
         assertNotNull(githubIssueStored);
     }
 
-    
     @Test
     public void testEditIssue() {
         GithubIssue oldIssue = githubService.getIssue(REPOSITORYUSER, PROJECT, 1);
@@ -96,7 +94,6 @@ public class GithubServiceWinkRestFrameworkImplTest {
         githubService.editIssue(REPOSITORYUSER, PROJECT, 1, "oldtitle", "oldbody");
     }
 
-    
     @Test
     public void testAddCommentIssue() {
         List<GithubComment> issueComments = githubService.getIssueComments(REPOSITORYUSER, PROJECT, 1);
@@ -106,9 +103,9 @@ public class GithubServiceWinkRestFrameworkImplTest {
         List<GithubComment> issueCommentsafter = githubService.getIssueComments(REPOSITORYUSER, PROJECT, 1);
         assertNotNull(issueCommentsafter);
         assertEquals(issueComments.size() + 1, issueCommentsafter.size());
-        assertEquals("testcomment" + time, issueCommentsafter.get(issueCommentsafter.size()-1).getBody());
+        assertEquals("testcomment" + time, issueCommentsafter.get(issueCommentsafter.size() - 1).getBody());
     }
-    
+
     @Test
     public void testChangeState() {
         GithubIssue issue = githubService.getIssue(REPOSITORYUSER, PROJECT, 1);

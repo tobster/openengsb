@@ -18,9 +18,22 @@ package org.openengsb.issues.github;
 
 import java.util.List;
 
-import lombok.Data;
-
-@Data
 public class GithubCommentWrapper {
     private List<GithubComment> comments;
+
+    public GithubCommentWrapper() {
+    }
+
+    public List<GithubComment> getComments() {
+        return comments;
+    }
+
+    public void setComments(final List<GithubComment> comments) {
+        this.comments = comments;
+    }
+
+    @Override
+    public java.lang.String toString() {
+        return "GithubCommentWrapper(comments=" + comments + ")";
+    }
 }
