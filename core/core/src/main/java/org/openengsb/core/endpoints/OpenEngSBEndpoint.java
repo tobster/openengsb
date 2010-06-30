@@ -32,14 +32,13 @@ import javax.xml.namespace.QName;
 import javax.xml.transform.Source;
 import javax.xml.transform.TransformerException;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.servicemix.common.DefaultComponent;
 import org.apache.servicemix.common.ServiceUnit;
 import org.apache.servicemix.common.endpoints.ProviderEndpoint;
 import org.apache.servicemix.jbi.jaxp.SourceTransformer;
 import org.apache.servicemix.jbi.jaxp.StringSource;
-import org.apache.servicemix.jbi.messaging.InOnlyImpl;
-import org.apache.servicemix.jbi.messaging.InOutImpl;
 import org.openengsb.contextcommon.ContextHelperImpl;
 import org.openengsb.core.EventHelper;
 import org.openengsb.core.EventHelperImpl;
@@ -51,7 +50,7 @@ import org.openengsb.core.transformation.Transformer;
 import org.openengsb.util.serialization.SerializationException;
 
 public class OpenEngSBEndpoint extends ProviderEndpoint {
-    private Logger log = Logger.getLogger(getClass());
+    private Log log = LogFactory.getLog(getClass());
 
     private HashMap<String, HashMap<String, String>> contextProperties;
     private ContextHelperImpl contextHelper = new ContextHelperImpl(this, null);
@@ -122,7 +121,7 @@ public class OpenEngSBEndpoint extends ProviderEndpoint {
 
     protected void forwardInOutMessage(MessageExchange exchange, NormalizedMessage in, NormalizedMessage out,
             QName service) throws MessagingException {
-        InOut inout = new InOutImpl(UUID.randomUUID().toString());
+        InOut inout = getExchangeFactory().createInOutExchange();
         inout.setService(service);
         inout.setInMessage(in);
         inout.setOperation(exchange.getOperation());
@@ -135,7 +134,7 @@ public class OpenEngSBEndpoint extends ProviderEndpoint {
 
     protected void forwardInOnlyMessage(MessageExchange exchange, NormalizedMessage in, QName service)
             throws MessagingException {
-        InOnly inonly = new InOnlyImpl(UUID.randomUUID().toString());
+        InOnly inonly = getExchangeFactory().createInOnlyExchange();
         inonly.setService(service);
         inonly.setInMessage(in);
         inonly.setOperation(exchange.getOperation());

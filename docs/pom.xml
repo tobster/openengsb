@@ -30,7 +30,7 @@
 
   <artifactId>openengsb-docs</artifactId>
   <name>openengsb-docs</name>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
 
   <description>
     Documentation project of Open Engineering Service Bus
@@ -38,8 +38,8 @@
 
   <distributionManagement>
     <site>
-      <id>publicServer</id>
-      <url>file:///var/www/openengsb/</url>
+      <id>OpenengsbWebServer</id>
+      <url>scp://openengsb.org/var/www/openengsb/</url>
     </site>
   </distributionManagement>
 
@@ -48,6 +48,7 @@
       <plugin>
         <groupId>org.apache.rat</groupId>
         <artifactId>apache-rat-plugin</artifactId>
+        <version>${maven.rat.version}</version>
         <configuration>
           <excludes>
             <!-- raw data -->
@@ -194,10 +195,12 @@
             </executions>
             <dependencies>
               <dependency>
-                <groupId>org.docbook</groupId>
+                <groupId>net.sf.docbook</groupId>
                 <artifactId>docbook-xml</artifactId>
-                <version>4.4</version>
+                <version>5.0-all</version>
                 <scope>runtime</scope>
+                <classifier>resources</classifier>
+                <type>zip</type>
               </dependency>
               <dependency>
                 <groupId>com.sun</groupId>

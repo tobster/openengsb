@@ -22,46 +22,61 @@
   <modelVersion>4.0.0</modelVersion>
 
   <properties>
-   
+
     <root.basedir>${project.basedir}</root.basedir>
-    <!-- Library Versions -->
-    <spring.version>2.5.6.SEC01</spring.version>
-    <spring.activemq.version>2.1</spring.activemq.version>
+
+    <!-- Environment Versions -->
     <jdk.version>1.6</jdk.version>
-    <servicemix.tools.version>4.0</servicemix.tools.version>
-    <servicemix.version>3.3.1</servicemix.version>
-    <servicemix.subprojects.version>2009.01</servicemix.subprojects.version>
-    <slf4j.version>1.5.8</slf4j.version>
-    <svnkit.version>1.3.0</svnkit.version>
-    <lucene.version>2.4.1</lucene.version>
+    <mvn.version>2.1</mvn.version>
+
+    <!-- Library Versions -->
     <activemq.version>5.2.0</activemq.version>
-    <jgit.version>0.7.1</jgit.version>
-    <log4j.version>1.2.14</log4j.version>
     <cglib.version>2.2</cglib.version>
-    <xbean.version>3.5</xbean.version>
-    <xmlrpc.version>3.1.2</xmlrpc.version>
-    <dom4j.version>1.6.1</dom4j.version>
-    <xerces.version>2.8.1</xerces.version>
-    <jaxen.version>1.1.1</jaxen.version>
-    <joda.version>1.6</joda.version>
     <commons.lang.version>2.4</commons.lang.version>
     <commons.io.version>1.4</commons.io.version>
     <commons.collections.version>3.2.1</commons.collections.version>
     <commons.pool.version>1.5.1</commons.pool.version>
     <commons.net.version>20030805.205232</commons.net.version>
-    <junit.version>4.4</junit.version>
+    <commons.dbcp.version>1.2.2</commons.dbcp.version>
+    <dom4j.version>1.6.1</dom4j.version>
+    <exist.version>1.4.0</exist.version>
+    <facebookAPI.version>3.0.1</facebookAPI.version>
+    <google.collections.version>1.0</google.collections.version>
     <hamcrest.version>1.1</hamcrest.version>
-    <mockito.version>1.7</mockito.version>
-    <mockns.version>0.1.0-SNAPSHOT</mockns.version>
-    <xmlunit.version>1.3</xmlunit.version>
+    <hibernate.version>3.4.0.GA</hibernate.version>
+    <httpcomponent.version>4.0-alpha4</httpcomponent.version>
+    <h2.version>1.1.116</h2.version>
+    <jaxb.version>2.2</jaxb.version>
+    <jaxen.version>1.1.1</jaxen.version>
+    <jetty.version>6.1.20</jetty.version>
+    <jgit.version>0.7.1</jgit.version>
+    <jibx.version>1.2.2</jibx.version>
+    <joda.version>1.6</joda.version>
+    <junit.version>4.4</junit.version>
+    <log4j.version>1.2.14</log4j.version>
+    <lucene.version>2.4.1</lucene.version>
     <maven.code.version>3.0-alpha-2</maven.code.version>
     <maven.plexus.utils.version>1.5.6</maven.plexus.utils.version>
-    <jibx.version>1.2.2</jibx.version>
-    <wicket.version>1.4.1</wicket.version>
-    <jetty.version>6.1.20</jetty.version>
+    <mockito.version>1.7</mockito.version>
+    <mockns.version>0.1.0-SNAPSHOT</mockns.version>
     <ode.version>1.3.4.preview1</ode.version>
-    <exist.version>1.4.0</exist.version>
+    <servicemix.specs.version>1.1.0</servicemix.specs.version>
+    <servicemix.tools.version>4.0</servicemix.tools.version>
+    <servicemix.version>3.3.1</servicemix.version>
+    <servicemix.subprojects.version>2010.01</servicemix.subprojects.version>
+    <servicemix-specs-version>1.3.0</servicemix-specs-version>
+    <slf4j.version>1.5.8</slf4j.version>
+    <smack.version>3.1.0</smack.version>
+    <spring.activemq.version>2.1</spring.activemq.version>
+    <spring.version>2.5.6.SEC01</spring.version>
+    <svnkit.version>1.3.0</svnkit.version>
     <twitter4j.version>2.1.0</twitter4j.version>
+    <wicket.version>1.4.3</wicket.version>
+    <xbean.version>3.5</xbean.version>
+    <xerces.version>2.8.1</xerces.version>
+    <xmlrpc.version>3.1.2</xmlrpc.version>
+    <xmlunit.version>1.3</xmlunit.version>
+
 
     <!-- Servicemix Library Versions -->
     <axis.version>1.3</axis.version>
@@ -78,6 +93,7 @@
     <geronimo.servlet.version>1.1</geronimo.servlet.version>
     <geronimo.javamail.version>1.2</geronimo.javamail.version>
     <geronimo.jaxws.version>1.0</geronimo.jaxws.version>
+    <geronimo-spec-j2ee.version>1.4-rc4</geronimo-spec-j2ee.version>
     <geronimo.ws.metadata.version>1.1.2</geronimo.ws.metadata.version>
     <howl.version>1.0.1-1</howl.version>
     <hsqldb.version>1.7.3.3</hsqldb.version>
@@ -88,13 +104,17 @@
     <rome.version>0.5</rome.version>
     <woden.version>1.0.0M6</woden.version>
     <xml.apis.version>1.3.04</xml.apis.version>
+    <geronimo-spec-j2ee.version>1.4-rc4</geronimo-spec-j2ee.version>
 
     <!-- Plugin Version -->
-    <docbkx.version>2.0.7</docbkx.version>
+    <docbkx.version>2.0.10</docbkx.version>
+    <jaxb.plugin.version>1.2</jaxb.plugin.version>
     <maven.plugin.release.version>2.0-beta-9</maven.plugin.release.version>
     <maven.plugin.surefire>2.4.3</maven.plugin.surefire>
     <maven.plugin.assembly.version>2.2-beta-5</maven.plugin.assembly.version>
-    <servicemix.jbi.maven.version>4.1</servicemix.jbi.maven.version>
+    <maven.rat.version>0.6</maven.rat.version>
+    <servicemix.jbi.maven.version>4.4-SNAPSHOT</servicemix.jbi.maven.version>
+    <twdata.cli.version>1.0.4</twdata.cli.version>
   </properties>
 
   <groupId>org.openengsb</groupId>
@@ -174,11 +194,14 @@
     <!-- Tool Abstraction -->
     <module>domains/toolabstraction/maven</module>
     <module>domains/toolabstraction/twitter</module>
+    <module>domains/toolabstraction/facebook</module>
 
     <!-- Connectors -->
     <module>domains/scm/subversion/service-engine</module>
     <module>domains/notification/email/service-engine</module>
     <module>domains/notification/twitter/service-engine</module>
+    <module>domains/notification/xmpp/service-engine</module>
+    <module>domains/notification/facebook/service-engine</module>
     <module>domains/report/plaintext/service-engine</module>
     <module>domains/issues/trac/service-engine</module>
     <module>domains/issues/github/service-engine</module>
@@ -191,9 +214,10 @@
     <module>domains/deploy/maven/service-unit</module>
     <module>domains/test/maven/service-unit</module>
     <module>domains/scm/subversion/service-unit</module>
-    <module>domains/scm/subversion/jms/service-unit</module>
     <module>domains/notification/email/service-unit</module>
     <module>domains/notification/twitter/service-unit</module>
+    <module>domains/notification/facebook/service-unit</module> 
+    <module>domains/notification/xmpp/service-unit</module>
     <module>domains/report/plaintext/service-unit</module>
     <module>domains/issues/trac/service-unit</module>
 
@@ -201,7 +225,6 @@
     <module>package/all</module>
     <module>package/essential</module>
     <module>package/assembly</module>
-    <module>package/test</module>
 
     <!-- Config -->
     <module>core/config/jbi</module>
@@ -216,6 +239,10 @@
     <module>features/link/http-jms/service-unit</module>
     <module>features/link/http-processor/service-engine</module>
     <module>features/link/http-processor/service-unit</module>
+   
+    <!-- Maven Archetypes -->
+    <module>archetypes/connector-archetype</module>
+    <module>archetypes/domain-archetype</module> 
 
   </modules>
 
@@ -228,13 +255,13 @@
   </scm>
 
   <issueManagement>
-    <system>Mantis</system>
-    <url>http://issues.openengsb.org/mantis</url>
+    <system>JIRA</system>
+    <url>http://issues.openengsb.org/</url>
   </issueManagement>
 
   <ciManagement>
     <system>Hudson</system>
-    <url>http://build.openengsb.org/hudson</url>
+    <url>http://build.openengsb.org/</url>
     <notifiers>
       <notifier>
         <type>mail</type>
@@ -243,56 +270,16 @@
         <sendOnSuccess>true</sendOnSuccess>
         <sendOnWarning>true</sendOnWarning>
         <configuration>
-          <address>openengsb-ticket@googlegroups.com</address>
+          <address>openengsb-dev@googlegroups.com</address>
         </configuration>
       </notifier>
     </notifiers>
   </ciManagement>
 
-  <mailingLists>
-    <mailingList>
-      <name>Release announcements</name>
-      <subscribe>openengsb-announce-subscribe@googlegroups.com</subscribe>
-      <unsubscribe>openengsb-announce-unsubscribe@googlegroups.com</unsubscribe>
-      <post>openengsb-announce@googlegroups.com</post>
-      <archive>http://groups.google.com/group/openengsb-announce</archive>
-    </mailingList>
-    <mailingList>
-      <name>Developer Mailing List</name>
-      <subscribe>openengsb-dev-subscribe@googlegroups.com</subscribe>
-      <unsubscribe>openengsb-dev-unsubscribe@googlegroups.com</unsubscribe>
-      <post>openengsb-dev@googlegroups.com</post>
-      <archive>http://groups.google.com/group/openengsb-dev</archive>
-    </mailingList>
-    <mailingList>
-      <name>User Mailing List</name>
-      <subscribe>openengsb-user-subscribe@googlegroups.com</subscribe>
-      <unsubscribe>openengsb-user-unsubscribe@googlegroups.com</unsubscribe>
-      <post>openengsb-user@googlegroups.com</post>
-      <archive>http://groups.google.com/group/openengsb-user</archive>
-    </mailingList>
-    <mailingList>
-      <name>Issue tracker notifications</name>
-      <subscribe>openengsb-ticket-subscribe@googlegroups.com</subscribe>
-      <unsubscribe>openengsb-ticket-unsubscribe@googlegroups.com</unsubscribe>
-      <post>openengsb-ticket@googlegroups.com</post>
-      <archive>http://groups.google.com/group/openengsb-ticket</archive>
-    </mailingList>
-    <mailingList>
-      <name>Commit notifications</name>
-      <subscribe>openengsb-commit-subscribe@googlegroups.com</subscribe>
-      <unsubscribe>openengsb-commit-unsubscribe@googlegroups.com</unsubscribe>
-      <post>openengsb-commit@googlegroups.com</post>
-      <archive>http://groups.google.com/group/openengsb-commit</archive>
-    </mailingList>
-  </mailingLists>
-
   <developers>
     <developer>
       <id>api</id>
       <name>Andreas Pieber</name>
-      <organization>Vienna University of Technology</organization>
-      <organizationUrl>http://cdl.ifs.tuwien.ac.at</organizationUrl>
       <email>andreas.pieber [at] ifs.tuwien.ac.at</email>
       <timezone>+1</timezone>
       <roles>
@@ -303,8 +290,6 @@
     <developer>
       <id>fwa</id>
       <name>Florian Waltersdorfer</name>
-      <organization>Vienna University of Technology</organization>
-      <organizationUrl>http://cdl.ifs.tuwien.ac.at</organizationUrl>
       <email>ignatiomobius [at] gmail.com</email>
       <timezone>+1</timezone>
       <roles>
@@ -315,8 +300,6 @@
       <id>cle</id>
       <name>Christoph Leiter</name>
       <email>openengsb [at] christophleiter.com</email>
-      <organization>Vienna University of Technology</organization>
-      <organizationUrl>http://cdl.ifs.tuwien.ac.at</organizationUrl>
       <timezone>+1</timezone>
       <roles>
         <role>Developer</role>
@@ -326,8 +309,24 @@
       <id>mha</id>
       <name>Michael Handler</name>
       <email>michael.handler [at] fullstop.at</email>
-      <organization>Vienna University of Technology</organization>
-      <organizationUrl>http://cdl.ifs.tuwien.ac.at</organizationUrl>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>cgr</id>
+      <name>Christoph Gritschenberger</name>
+      <email>e0525747 [at] student.tuwien.ac.at</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>mzo</id>
+      <name>Michael Zoech</name>
+      <email>zoech [at] qse.ifs.tuwien.ac.at</email>
       <timezone>+1</timezone>
       <roles>
         <role>Developer</role>
@@ -339,57 +338,41 @@
     <contributor>
       <name>Patrick Peer</name>
       <email>e0326352 [at] gmail.com</email>
-      <organization>Vienna University of Technology</organization>
-      <organizationUrl>http://cdl.ifs.tuwien.ac.at</organizationUrl>
       <timezone>+1</timezone>
     </contributor>
     <contributor>
       <name>Christoph Zehetner</name>
       <email>christoph.zehetner [at] gmx.at</email>
-      <organization>Vienna University of Technology</organization>
-      <organizationUrl>http://cdl.ifs.tuwien.ac.at</organizationUrl>
       <timezone>+1</timezone>
     </contributor>
     <contributor>
       <name>Alexander Pucher</name>
       <email>engsb [at] alexander-pucher.com</email>
-      <organization>Vienna University of Technology</organization>
-      <organizationUrl>http://cdl.ifs.tuwien.ac.at</organizationUrl>
-      <timezone>+1</timezone>
-    </contributor>
-    <contributor>
-      <name>Michael Zoech</name>
-      <email>zoech [at] qse.ifs.tuwien.ac.at</email>
-      <organization>Vienna University of Technology</organization>
-      <organizationUrl>http://cdl.ifs.tuwien.ac.at</organizationUrl>
-      <timezone>+1</timezone>
-    </contributor>
-    <contributor>
-      <name>Christoph Gritschenberger</name>
-      <email>e0525747 [at] student.tuwien.ac.at</email>
-      <organization>Vienna University of Technology</organization>
-      <organizationUrl>http://cdl.ifs.tuwien.ac.at</organizationUrl>
       <timezone>+1</timezone>
     </contributor>
     <contributor>
       <name>David Waldhans</name>
       <email>david [at] waldhans.at</email>
-      <organization>Vienna University of Technology</organization>
-      <organizationUrl>http://cdl.ifs.tuwien.ac.at</organizationUrl>
       <timezone>+1</timezone>
     </contributor>
     <contributor>
       <name>Michael Heil</name>
       <email>michael.heil [at] chello.at</email>
-      <organization>Vienna University of Technology</organization>
-      <organizationUrl>http://cdl.ifs.tuwien.ac.at</organizationUrl>
       <timezone>+1</timezone>
     </contributor>
     <contributor>
       <name>Lukas Puschmann</name>
       <email>lukas.puschmann [at] gmx.at</email>
-      <organization>Vienna University of Technology</organization>
-      <organizationUrl>http://cdl.ifs.tuwien.ac.at</organizationUrl>
+      <timezone>+1</timezone>
+    </contributor>
+    <contributor>
+      <name>Johannes Binder</name>
+      <email>j.binder.x [at] gmail.com</email>
+      <timezone>+1</timezone>
+    </contributor>
+    <contributor>
+      <name>Gernot Rumpold</name>
+      <email>gernot.rumpold [at] gmail.com</email>
       <timezone>+1</timezone>
     </contributor>
   </contributors>
@@ -482,20 +465,16 @@
       <plugin>
         <groupId>org.apache.servicemix.tooling</groupId>
         <artifactId>jbi-maven-plugin</artifactId>
-	<extensions>true</extensions>
-	<version>${servicemix.jbi.maven.version}</version>
+        <extensions>true</extensions>
+        <version>${servicemix.jbi.maven.version}</version>
+        <configuration>
+          <jndiPath>/karaf-root</jndiPath>
+        </configuration>
       </plugin>
       <plugin>
-        <groupId>org.jibx</groupId>
-        <artifactId>maven-jibx-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>normal-execution</id>
-            <goals>
-              <goal>bind</goal>
-            </goals>
-          </execution>
-        </executions>
+        <groupId>org.twdata.maven</groupId>
+        <artifactId>maven-cli-plugin</artifactId>
+        <version>${twdata.cli.version}</version>
       </plugin>
     </plugins>
     <pluginManagement>
@@ -556,9 +535,39 @@
           <version>${maven.plugin.surefire}</version>
         </plugin>
         <plugin>
-          <groupId>org.jibx</groupId>
-          <artifactId>maven-jibx-plugin</artifactId>
-          <version>${jibx.version}</version>
+          <groupId>com.sun.tools.jxc.maven2</groupId>
+          <artifactId>maven-jaxb-schemagen-plugin</artifactId>
+          <version>${jaxb.plugin.version}</version>
+          <executions>
+            <execution>
+              <phase>generate-resources</phase>
+              <goals>
+                <goal>generate</goal>
+              </goals>
+            </execution>
+          </executions>
+          <dependencies>
+            <dependency>
+              <groupId>javax.xml.bind</groupId>
+              <artifactId>jaxb-api</artifactId>
+              <version>${jaxb.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>com.sun.xml.bind</groupId>
+              <artifactId>jaxb-xjc</artifactId>
+              <version>${jaxb.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>com.sun.xml.bind</groupId>
+              <artifactId>jaxb-impl</artifactId>
+              <version>${jaxb.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>com.sun.xml.bind</groupId>
+              <artifactId>jaxb-xjc</artifactId>
+              <version>${jaxb.version}</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -612,6 +621,7 @@
           <plugin>
             <groupId>org.apache.rat</groupId>
             <artifactId>apache-rat-plugin</artifactId>
+            <version>${maven.rat.version}</version>
             <configuration>
               <excludeSubProjects>false</excludeSubProjects>
               <excludes>
@@ -641,9 +651,8 @@
                 <exclude>**/testFiles/**</exclude>
                 <exclude>**/site/docbook/empty.txt</exclude>
 
-                <!-- Jibx generated stuff -->
-                <exclude>**/src/main/java/binding.xml</exclude>
-                <exclude>**/src/main/java/org/openengsb/core/xmlmapping/*.java</exclude>
+                <!-- -? jaxb stuff -? -->
+                <exclude>**/jaxb.index</exclude>
 
                 <!-- docs are checked in docs project -->
                 <exclude>docs/</exclude>
@@ -659,6 +668,7 @@
                 <exclude>nonjava/csharp/lib/**</exclude>
                 <exclude>**/**.csproj</exclude>
                 <exclude>**/**.sln</exclude>
+                <exclude>nonjava/perl/**</exclude>
 
                 <!-- Scripts -->
                 <exclude>quickrun.sh</exclude>
@@ -676,10 +686,12 @@
 
                 <!-- Examples files -->
                 <exclude>features/edb/examples/**</exclude>
-               
+
                 <!-- Svn stomp-client commit hook library -->
                 <exclude>domains/scm/subversion/hooks/stomp-client/lib/**</exclude>
-                 
+
+                <exclude>**/src/main/resources/rulebase/**</exclude>
+
               </excludes>
             </configuration>
             <executions>
@@ -823,7 +835,7 @@
         <artifactId>openengsb-domains-notification-implementation-su</artifactId>
         <version>${pom.version}</version>
       </dependency>
-
+      
       <!-- Report Domain -->
       <dependency>
         <groupId>org.openengsb</groupId>
@@ -884,7 +896,7 @@
         <version>${pom.version}</version>
       </dependency>
       
-      <!-- ??? -->
+      <!-- Maven things -->
       <dependency>
         <groupId>org.openengsb</groupId>
         <artifactId>openengsb-domains-test-maven-se</artifactId>
@@ -930,6 +942,11 @@
       </dependency>
       <dependency>
         <groupId>org.openengsb</groupId>
+        <artifactId>openengsb-domains-toolabstraction-facebook</artifactId>
+        <version>${pom.version}</version>
+      </dependency>        
+      <dependency>
+        <groupId>org.openengsb</groupId>
         <artifactId>openengsb-domains-issues-trac-se</artifactId>
         <version>${pom.version}</version>
       </dependency>
@@ -956,6 +973,27 @@
 	  <dependency>
         <groupId>org.openengsb</groupId>
         <artifactId>openengsb-domains-notification-twitter-se</artifactId>
+        <version>${pom.version}</version>
+      </dependency>
+	  <dependency>
+        <groupId>org.openengsb</groupId>
+        <artifactId>openengsb-domains-notification-facebook-su</artifactId>
+        <version>${pom.version}</version>
+      </dependency>
+	  <dependency>
+        <groupId>org.openengsb</groupId>
+        <artifactId>openengsb-domains-notification-facebook-se</artifactId>
+        <version>${pom.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.openengsb</groupId>
+        <artifactId>openengsb-domains-notification-xmpp-su</artifactId>
+        <version>${pom.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.openengsb</groupId>
+        <artifactId>openengsb-domains-notification-xmpp-se</artifactId>
         <version>${pom.version}</version>
       </dependency>
       <dependency>
@@ -1024,11 +1062,6 @@
         <artifactId>openengsb-domains-scm-subversion-su</artifactId>
         <version>${pom.version}</version>
       </dependency>
-      <dependency>
-        <groupId>org.openengsb</groupId>
-        <artifactId>openengsb-domains-scm-subversion-jms-su</artifactId>
-        <version>${pom.version}</version>
-      </dependency>
 
       <!-- Packaging Modules -->
       <dependency>
@@ -1049,11 +1082,6 @@
       <dependency>
         <groupId>org.openengsb</groupId>
         <artifactId>openengsb-package-embedded</artifactId>
-        <version>${pom.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.openengsb</groupId>
-        <artifactId>openengsb-package-test</artifactId>
         <version>${pom.version}</version>
       </dependency>
 
@@ -1081,6 +1109,13 @@
         <groupId>org.apache.servicemix</groupId>
         <artifactId>servicemix-core</artifactId>
         <version>${servicemix.version}</version>
+        <scope>test</scope>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.apache.servicemix.specs</groupId>
+        <artifactId>org.apache.servicemix.specs.jbi-api-1.0</artifactId>
+        <version>${servicemix-specs-version}</version>
         <scope>provided</scope>
       </dependency>
 
@@ -1378,9 +1413,9 @@
         <version>${commons.pool.version}</version>
       </dependency>
       <dependency>
-              <groupId>commons-net</groupId>
-              <artifactId>commons-net</artifactId>
-              <version>${commons.net.version}</version>
+        <groupId>commons-net</groupId>
+        <artifactId>commons-net</artifactId>
+        <version>${commons.net.version}</version>
       </dependency>
       <dependency>
         <groupId>commons-collections</groupId>
@@ -1388,9 +1423,9 @@
         <version>${commons.collections.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.jibx</groupId>
-        <artifactId>jibx-run</artifactId>
-        <version>${jibx.version}</version>
+        <groupId>com.google.collections</groupId>
+        <artifactId>google-collections</artifactId>
+        <version>${google.collections.version}</version>
       </dependency>
 
       <!-- Test Dependencies -->
@@ -1432,15 +1467,93 @@
         <version>${jetty.version}</version>
         <type>zip</type>
       </dependency>
-      
+     
       <!-- Twitter -->
       <dependency>
         <groupId>org.twitter4j</groupId>
         <artifactId>twitter4j-core</artifactId>
         <version>${twitter4j.version}</version>
-    </dependency>
+      </dependency>
+
+       <!-- facebook connector api-->
+      <dependency>
+        <groupId>com.google.code.facebookapi</groupId>
+        <artifactId>facebook-java-api</artifactId>
+        <version>${facebookAPI.version}</version>
+      </dependency>
+      <!--http components -->
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${httpcomponent.version}</version>
+      </dependency>
+       
+        
+      <!-- OpenFire XMPP -->
+      <dependency>
+        <groupId>jivesoftware</groupId>
+        <artifactId>smack</artifactId>
+        <version>${smack.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jivesoftware</groupId>
+        <artifactId>smackx</artifactId>
+        <version>${smack.version}</version>
+      </dependency>      
+
+      <dependency>
+        <groupId>geronimo-spec</groupId>
+        <artifactId>geronimo-spec-j2ee</artifactId>
+        <version>${geronimo-spec-j2ee.version}</version>
+      </dependency>
+
+      <!-- Quartz -->
+      <dependency>
+        <groupId>quartz</groupId>
+        <artifactId>quartz</artifactId>
+        <version>${quartz.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>apache.snapshots</id>
+      <name>apache snapshot repository</name>
+      <url>http://repository.apache.org/snapshots</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+         <enabled>false</enabled>
+      </releases>
+    </pluginRepository>
+    <pluginRepository>
+      <id>maven-repository.dev.java.net</id>
+      <name>Java.net Maven 2 Repository</name>
+      <url>http://download.java.net/maven/2</url>
+    </pluginRepository>
+    <pluginRepository>
+      <id>twdata-m2-repository</id>
+      <name>twdata.org Maven 2 Repository</name>
+      <url>http://twdata-m2-repository.googlecode.com/svn/</url>
+    </pluginRepository>
+    <pluginRepository>
+      <id>ops4j.releases</id>
+      <url>http://repository.ops4j.org/maven2</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+      <id>openengsb-plugin-releases</id>
+      <url>http://maven.openengsb.org/nexus/content/repositories/openengsb-plugin-releases</url>
+    </pluginRepository>
+    <pluginRepository>
+      <id>openengsb-plugin-snapshots</id>
+      <url>http://maven.openengsb.org/nexus/content/repositories/openengsb-plugin-snapshots</url>
+    </pluginRepository>
+  </pluginRepositories>
 
   <repositories>
     <repository>
@@ -1465,18 +1578,41 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
+    <repository>
+      <id>apache.snapshots</id>
+      <name>apache snapshot repository</name>
+      <url>http://repository.apache.org/snapshots</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </repository>
+    <repository>
+      <id>jboss</id>
+      <url>http://repository.jboss.com/maven2</url>
+    </repository>
+    <repository>
+      <id>openengsb-osgi-releases</id>
+      <url>http://maven.openengsb.org/nexus/content/repositories/openengsb-osgi-releases</url>
+    </repository>
+    <repository>
+      <id>openengsb-osgi-snapshots</id>
+      <url>http://maven.openengsb.org/nexus/content/repositories/openengsb-osgi-snapshots</url>
+    </repository>
   </repositories>
 
   <distributionManagement>
     <repository>
-      <id>releases</id>
+      <id>openengsb-releases</id>
       <name>OpenEngSB Release Repository</name>
-      <url>dav:http://maven.openengsb.org/nexus/content/repositories/releases/</url>
+      <url>dav:http://maven.openengsb.org/nexus/content/repositories/openengsb-releases/</url>
     </repository>
     <snapshotRepository>
-      <id>snapshots</id>
+      <id>openengsb-snapshots</id>
       <name>OpenEngSB Snapshot Repository</name>
-      <url>dav:http://maven.openengsb.org/nexus/content/repositories/snapshots/</url>
+      <url>dav:http://maven.openengsb.org/nexus/content/repositories/openengsb-snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
 

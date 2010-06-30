@@ -10,7 +10,13 @@ eclipse-workspace
 *.classpath
 *.settings
 *bin
-formatter.xml
+
+#=================
+#intellij-project
+#=================
+*.iml
+*.ipr
+*.iws
 
 #=================
 #maven-files
@@ -26,10 +32,10 @@ formatter.xml
 #runtime productions
 #================
 *activemq-data
+core/config/ui/data
 engsb-edb-core/dump
-openengsb-embedded/derby.log
-openengsb-embedded/data/
-openengsb-embedded/openengsb.log
+package/embedded/*.log
+package/embedded/data/
 
 #================
 #Mac OS X hidden files/folders
@@ -55,3 +61,9 @@ openengsb-embedded/openengsb.log
 #Easy2Find
 #================
 easy2find
+
+#================
+#pver ignores
+#================
+pconf.pyc
+

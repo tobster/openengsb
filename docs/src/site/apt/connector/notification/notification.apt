@@ -18,5 +18,9 @@ Notification Connectors
   TBW
   
   * {{{email.html}engsb-connector-notification-email}}
+
+  * {{{facebook.html}engsb-connector-notification-facebook}}
   
   * {{{twitter.html}engsb-connector-notification-twitter}}
+
+  * {{{xmpp.html}engsb-connector-notification-xmpp}}
