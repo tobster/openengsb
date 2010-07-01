@@ -220,6 +220,7 @@
     <module>domains/notification/xmpp/service-unit</module>
     <module>domains/report/plaintext/service-unit</module>
     <module>domains/issues/trac/service-unit</module>
+    <module>domains/issues/github/service-unit</module>
 
     <!-- Packaging Modules -->
     <module>package/all</module>
@@ -919,7 +920,7 @@
       </dependency>
       <dependency>
         <groupId>org.openengsb</groupId>
-        <artifactId>openengsb-domains-issues-github-su</artifactId>
+        <artifactId>openengsb-domains-issues-github-se</artifactId>
         <version>${pom.version}</version>
       </dependency>
 
@@ -953,6 +954,11 @@
       <dependency>
         <groupId>org.openengsb</groupId>
         <artifactId>openengsb-domains-issues-trac-su</artifactId>
+        <version>${pom.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.openengsb</groupId>
+        <artifactId>openengsb-domains-issues-github-su</artifactId>
         <version>${pom.version}</version>
       </dependency>
       <dependency>
