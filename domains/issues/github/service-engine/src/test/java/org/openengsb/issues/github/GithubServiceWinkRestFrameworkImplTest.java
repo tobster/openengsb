@@ -26,7 +26,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.openengsb.issues.github.GithubService.State;
 
 @Ignore
 public class GithubServiceWinkRestFrameworkImplTest {
@@ -111,11 +110,11 @@ public class GithubServiceWinkRestFrameworkImplTest {
         GithubIssue issue = githubService.getIssue(REPOSITORYUSER, PROJECT, 1);
         assertNotNull(issue);
         assertEquals("closed", issue.getState());
-        githubService.changeState(REPOSITORYUSER, PROJECT, 1, State.OPEN);
+        githubService.changeState(REPOSITORYUSER, PROJECT, 1, "OPEN");
         issue = githubService.getIssue(REPOSITORYUSER, PROJECT, 1);
         assertNotNull(issue);
         assertEquals("open", issue.getState());
-        githubService.changeState(REPOSITORYUSER, PROJECT, 1, State.CLOSE);
+        githubService.changeState(REPOSITORYUSER, PROJECT, 1, "CLOSE");
         issue = githubService.getIssue(REPOSITORYUSER, PROJECT, 1);
         assertNotNull(issue);
         assertEquals("closed", issue.getState());

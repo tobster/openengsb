@@ -105,21 +105,17 @@ public class GithubServiceWinkRestFrameworkImpl implements GithubService {
     }
 
     @Override
-    public void changeState(String repositoryUser, String project, long id, State state) {
+    public void changeState(String repositoryUser, String project, long id, String state) {
         String action;
-        switch (state) {
-        case CLOSE:
+        //switch (state) {
+        //case CLOSE:
+        if(state.equals("CLOSE"))
             action = "close";
-            break;
-
-        case OPEN:
+         else if(state.equals("OPEN") )
             action = "reopen";
-            break;
+         else return;
 
-        default:
-            return;
-
-        }
+        
         URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(action).path(repositoryUser).path(project).path(
                 String.valueOf(id)).queryParam(LONGIN, this.user).queryParam(TOKEN, this.token).build();
         Resource resource = this.restClient.resource(uri);

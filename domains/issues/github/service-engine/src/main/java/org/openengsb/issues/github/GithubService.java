@@ -19,9 +19,6 @@ package org.openengsb.issues.github;
 import java.util.List;
 
 public interface GithubService {
-    public enum State {
-        OPEN, CLOSE
-    }
 
     List<GithubIssue> getIssues(String repositoryUser, String project, String state);
 
@@ -31,7 +28,7 @@ public interface GithubService {
 
     GithubIssue createIssue(String repositoryUser, String project, GithubIssue issue);
 
-    void changeState(String repositoryUser, String project, long id, State state);
+    void changeState(String repositoryUser, String project, long id, String state);
 
     void editIssue(String repositoryUser, String project, long id, String title, String body);
 

@@ -918,11 +918,7 @@
         <artifactId>openengsb-domains-issues-trac-se</artifactId>
         <version>${pom.version}</version>
       </dependency>
-      <dependency>
-        <groupId>org.openengsb</groupId>
-        <artifactId>openengsb-domains-issues-github-se</artifactId>
-        <version>${pom.version}</version>
-      </dependency>
+
 
 
       <!-- Connectors -->
@@ -954,6 +950,11 @@
       <dependency>
         <groupId>org.openengsb</groupId>
         <artifactId>openengsb-domains-issues-trac-su</artifactId>
+        <version>${pom.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.openengsb</groupId>
+        <artifactId>openengsb-domains-issues-github-se</artifactId>
         <version>${pom.version}</version>
       </dependency>
       <dependency>

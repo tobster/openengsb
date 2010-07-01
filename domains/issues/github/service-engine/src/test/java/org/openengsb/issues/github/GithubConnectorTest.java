@@ -25,7 +25,6 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 import org.openengsb.drools.model.Issue;
-import org.openengsb.issues.github.GithubService.State;
 import org.springframework.test.annotation.ExpectedException;
 
 public class GithubConnectorTest {
@@ -76,7 +75,7 @@ public class GithubConnectorTest {
     @Test
     public void testDeleteIssue() {
         githubConnector.deleteIssue("1");
-        verify(githubService, times(1)).changeState("testUser", "testProject", 1, State.CLOSE);
+        verify(githubService, times(1)).changeState("testUser", "testProject", 1, "CLOSE");
     }
 
     @Test

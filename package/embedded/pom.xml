@@ -686,6 +686,13 @@
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.openengsb</groupId>
+                  <artifactId>openengsb-domains-issues-github-se</artifactId>
+                  <version>${project.version}</version>
+                  <classifier>installer</classifier>
+                  <type>zip</type>
+                </artifactItem>  
+                <artifactItem>
+                  <groupId>org.openengsb</groupId>
                   <artifactId>openengsb-domains-deploy-maven-se</artifactId>
                   <version>${project.version}</version>
                   <classifier>installer</classifier>

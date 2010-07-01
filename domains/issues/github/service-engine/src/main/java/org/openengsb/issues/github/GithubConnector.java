@@ -16,11 +16,12 @@
  */
 package org.openengsb.issues.github;
 
-import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openengsb.drools.IssuesDomain;
 import org.openengsb.drools.model.Issue;
+
+import java.util.Map;
 
 public class GithubConnector implements IssuesDomain {
     private final Log log = LogFactory.getLog(this.getClass());
@@ -47,7 +48,7 @@ public class GithubConnector implements IssuesDomain {
     public void deleteIssue(String id) {
         try {
             this.githubService.changeState(this.repositoryUser, this.project, Long.valueOf(id),
-                    GithubService.State.CLOSE);
+                    "CLOSE");
         } catch (NumberFormatException e) {
             log.error("could not transform id >" + id + "<to long value", e);
         }
