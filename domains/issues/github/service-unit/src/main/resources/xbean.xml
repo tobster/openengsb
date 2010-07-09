@@ -16,7 +16,7 @@
   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
   <bean id="githubService" class="org.openengsb.issues.github.GithubServiceWinkRestFrameworkImpl">
-    <property name="token" value="" />
+    <property name="token" value="eb17ad093068ae05213001121fa4881e" />
     <property name="user" value="tobster" />
   </bean>
 

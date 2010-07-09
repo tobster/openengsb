@@ -28,7 +28,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class GithubServiceWinkRestFrameworkImpl implements GithubService {
-    private RestClient restClient = new RestClient();
+
+    private RestClient restClient;
     private GsonBuilder gsonBuilder = new GsonBuilder();
     private Gson gson;
     private String user;
@@ -50,7 +51,7 @@ public class GithubServiceWinkRestFrameworkImpl implements GithubService {
     }
 
     private <T> T requestandmarshal(URI uri, Class<T> clazz) {
-        Resource resource = this.restClient.resource(uri).accept(MediaType.APPLICATION_JSON);
+        Resource resource = this.getRestClient().resource(uri).accept(MediaType.APPLICATION_JSON);
         String result = resource.get(String.class);
         return this.gson.fromJson(result, clazz);
     }
@@ -71,8 +72,7 @@ public class GithubServiceWinkRestFrameworkImpl implements GithubService {
 
     @Override
     public List<GithubIssue> getIssues(String repositoryUser, String project, String state) {
-        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(LIST).path(repositoryUser).path(project).path(state)
-                .queryParam(LONGIN, this.user).queryParam(TOKEN, this.token).build();
+        URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(LIST).path(repositoryUser).path(project).path(state).queryParam(LONGIN, this.user).queryParam(TOKEN, this.token).build();
         return requestandmarshal(uri, GithubIssuesWrapper.class).getIssues();
     }
 
@@ -81,7 +81,7 @@ public class GithubServiceWinkRestFrameworkImpl implements GithubService {
         URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(OPEN).path(repositoryUser).path(project).queryParam(
                 LONGIN, this.user).queryParam(TOKEN, this.token).queryParam("title", issue.getTitle()).queryParam(
                 "body", issue.getBody()).build();
-        Resource resource = this.restClient.resource(uri).accept(MediaType.APPLICATION_JSON);
+        Resource resource = this.getRestClient().resource(uri).accept(MediaType.APPLICATION_JSON);
         String result = resource.post(String.class, null);
         return this.gson.fromJson(result, GithubIssueWrapper.class).getIssue();
     }
@@ -91,7 +91,7 @@ public class GithubServiceWinkRestFrameworkImpl implements GithubService {
         URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(EDIT).path(repositoryUser).path(project).path(
                 String.valueOf(id)).queryParam(LONGIN, this.user).queryParam(TOKEN, this.token).queryParam("title",
                 title).queryParam("body", body).build();
-        Resource resource = this.restClient.resource(uri);
+        Resource resource = this.getRestClient().resource(uri);
         resource.post(null);
     }
 
@@ -100,7 +100,7 @@ public class GithubServiceWinkRestFrameworkImpl implements GithubService {
         URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(COMMENT).path(repositoryUser).path(project).path(
                 String.valueOf(id)).queryParam(LONGIN, this.user).queryParam(TOKEN, this.token).queryParam(COMMENT,
                 comment).build();
-        Resource resource = this.restClient.resource(uri);
+        Resource resource = this.getRestClient().resource(uri);
         resource.post(null).getMessage();
     }
 
@@ -109,16 +109,18 @@ public class GithubServiceWinkRestFrameworkImpl implements GithubService {
         String action;
         //switch (state) {
         //case CLOSE:
-        if(state.equals("CLOSE"))
+        if (state.equals("CLOSE")) {
             action = "close";
-         else if(state.equals("OPEN") )
+        } else if (state.equals("OPEN")) {
             action = "reopen";
-         else return;
+        } else {
+            return;
+        }
 
-        
+
         URI uri = UriBuilder.fromUri(BASEURL).path(ISSUES).path(action).path(repositoryUser).path(project).path(
                 String.valueOf(id)).queryParam(LONGIN, this.user).queryParam(TOKEN, this.token).build();
-        Resource resource = this.restClient.resource(uri);
+        Resource resource = this.getRestClient().resource(uri);
         resource.post(null).getMessage();
     }
 
@@ -128,5 +130,15 @@ public class GithubServiceWinkRestFrameworkImpl implements GithubService {
 
     public void setToken(final String token) {
         this.token = token;
+    }
+
+    /**
+     * @return the restClient
+     */
+    private RestClient getRestClient() {
+        if (restClient == null) {
+            restClient = new RestClient();
+        }
+        return restClient;
     }
 }

@@ -28,16 +28,19 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 @Ignore
-public class GithubServiceWinkRestFrameworkImplTest {
-
-    private static final String REPOSITORYUSER = "tobster";
+public class GithubServiceWinkRestFrameworkImplUT {
+    //enter your own github username here
+    private static final String REPOSITORYUSER = "xxx";
+    //enter your own token here
+    private static final String REPOSITROYTOKEN = "xxx";
     private static final String PROJECT = "openengsb";
     GithubServiceWinkRestFrameworkImpl githubService = new GithubServiceWinkRestFrameworkImpl();
 
     @Before
     public void init() {
         githubService.setUser(REPOSITORYUSER);
-        githubService.setToken("grr token ...");
+
+        githubService.setToken(REPOSITROYTOKEN);
     }
 
     @Test
@@ -51,7 +54,7 @@ public class GithubServiceWinkRestFrameworkImplTest {
     public void testGetIssueComments() {
         List<GithubComment> issueComments = this.githubService.getIssueComments(PROJECT, PROJECT, 5);
         assertNotNull(issueComments);
-        assertEquals(2, issueComments.size());
+        assertEquals(3, issueComments.size());
         assertEquals("anpieber", issueComments.get(0).getUser());
     }
 
