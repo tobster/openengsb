@@ -40,6 +40,7 @@
   <modules>
     <module>com.google.guava</module>
     <module>org.apache.wicket</module>
+    <module>org.apache.maven</module>
     <module>javax.xml.jaxb</module>
   </modules>
 
