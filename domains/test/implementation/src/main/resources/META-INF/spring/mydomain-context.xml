@@ -25,13 +25,13 @@
         http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi-2.0-m1.xsd">
 
   <osgi:service interface="org.openengsb.core.common.DomainProvider">
-    <bean class="org.openengsb.domains.test.MyDomainProvider" />
+    <bean class="org.openengsb.domains.test.TestDomainProvider" />
   </osgi:service>
 
   <osgi:service>
     <osgi:interfaces>
       <value>org.openengsb.core.common.Domain</value>
-      <value>org.openengsb.domains.test.MyDomain</value>
+      <value>org.openengsb.domains.test.TestDomain</value>
     </osgi:interfaces>
     <osgi:service-properties>
       <entry key="id" value="domains.mydomain" />
@@ -39,9 +39,9 @@
     </osgi:service-properties>
     <bean class="org.openengsb.core.common.DefaultDomainProxyFactoryBean">
       <property name="domainInterface">
-        <value>org.openengsb.domains.test.MyDomain</value>
+        <value>org.openengsb.domains.test.TestDomain</value>
       </property>
-      <property name="domainName" value="MyDomain" />
+      <property name="domainName" value="TestDomain" />
       <property name="context" ref="contextService" />
     </bean>
   </osgi:service>
@@ -49,7 +49,7 @@
   <osgi:service>
     <osgi:interfaces>
       <value>org.openengsb.core.common.DomainEvents</value>
-      <value>org.openengsb.domains.test.MyDomainEvents</value>
+      <value>org.openengsb.domains.test.TestDomainEvents</value>
     </osgi:interfaces>
     <osgi:service-properties>
       <entry key="id" value="domains.mydomain.events" />
@@ -58,7 +58,7 @@
 
     <bean class="org.openengsb.core.events.DomainEventsProxyFactoryBean">
       <property name="domainEventInterface">
-        <value>org.openengsb.domains.test.MyDomainEvents</value>
+        <value>org.openengsb.domains.test.TestDomainEvents</value>
       </property>
       <property name="workflowService" ref="workflowService" />
     </bean>
