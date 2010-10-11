@@ -67,8 +67,7 @@ public class MavenConnector {
     private File baseDirectory;
 
     /**
-     * Goals to execute for the pom.xml in the directory specified by parameter
-     * 'file'
+     * Goals to execute for the pom.xml in the directory specified by parameter 'file'
      */
     private String[] goals;
 
@@ -133,8 +132,9 @@ public class MavenConnector {
         stringLogger.setThreshold(logLevel.getLevel());
         MavenEmbedder embedder = setUpEmbedder(stringLogger);
 
-        MavenExecutionRequest request = new DefaultMavenExecutionRequest().setBaseDirectory(baseDirectory).setGoals(
-                Arrays.asList(goals)).setProperties(executionRequestProperties);
+        MavenExecutionRequest request =
+            new DefaultMavenExecutionRequest().setBaseDirectory(baseDirectory).setGoals(Arrays.asList(goals))
+                .setProperties(executionRequestProperties);
         request.setPom(new File(baseDirectory, "/pom.xml"));
 
         MavenResult mavenResult = new MavenResult();
@@ -199,8 +199,8 @@ public class MavenConnector {
     }
 
     private MavenEmbedder setUpEmbedder(MavenEmbedderLogger logger) {
-        Configuration configuration = new DefaultConfiguration().setClassLoader(Thread.currentThread()
-                .getContextClassLoader());
+        Configuration configuration =
+            new DefaultConfiguration().setClassLoader(Thread.currentThread().getContextClassLoader());
 
         configuration.setMavenEmbedderLogger(logger);
 
@@ -248,7 +248,8 @@ public class MavenConnector {
         }
     }
 
-    private void readReactorResult(MavenResult mavenResult, MavenEmbedder embedder, MavenExecutionResult executionResult) {
+    private void
+    readReactorResult(MavenResult mavenResult, MavenEmbedder embedder, MavenExecutionResult executionResult) {
         ReactorManager reactor = executionResult.getReactorManager();
 
         if (reactor != null && reactor.hasBuildFailures()) {

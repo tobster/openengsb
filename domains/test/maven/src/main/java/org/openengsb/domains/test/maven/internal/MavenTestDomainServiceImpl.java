@@ -30,19 +30,24 @@ public class MavenTestDomainServiceImpl extends AbstractMavenDomainImpl implemen
 
     @Override
     public Boolean runTests() {
-        log.info("Running tests using maven connector.");
+        log.info("Running tests using maven.");
         MavenParameters params = getMavenParametersForMavenCall();
+        params.setGoals(new String[]{"test"});
         MavenResult mavenResult = callMaven(params);
         return mavenResult.isSuccess();
     }
 
     @Override
     public AliveState getAliveState() {
-        return AliveState.ONLINE;
+        log.info("validating project structure.");
+        MavenParameters params = getMavenParametersForMavenCall();
+        params.setGoals(new String[]{"validate"});
+        MavenResult mavenResult = callMaven(params);
+        if (mavenResult.isSuccess()) {
+            return AliveState.ONLINE;
+        } else {
+            return AliveState.DISCONNECTED;
+        }
     }
 
-    public void setAttr(String string) {
-        // TODO Auto-generated method stub
-        
-    }
 }

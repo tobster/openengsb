@@ -28,9 +28,9 @@
       <entry key="domain" value="org.openengsb.domains.test.TestDomain" />
       <entry key="openengsb.service.type" value="connector" />
     </osgi:service-properties>
-    <bean class="org.openengsb.domains.test.maven.MyServiceManager">
+    <bean class="org.openengsb.domains.test.maven.MavenTestDomainServiceManager">
       <constructor-arg>
-        <bean class="org.openengsb.domains.test.maven.internal.MyServiceInstanceFactory" />
+        <bean class="org.openengsb.domains.test.maven.internal.MavenTestDomainServiceInstanceFactory" />
       </constructor-arg>
     </bean>
   </osgi:service>

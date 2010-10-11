@@ -22,15 +22,16 @@ import org.openengsb.core.common.ServiceInstanceFactory;
 import org.openengsb.core.common.descriptor.ServiceDescriptor;
 import org.openengsb.domains.test.TestDomain;
 
-public class MavenTestDomainServiceInstanceFactory implements ServiceInstanceFactory<TestDomain, MavenTestDomainServiceImpl> {
+public class MavenTestDomainServiceInstanceFactory implements
+        ServiceInstanceFactory<TestDomain, MavenTestDomainServiceImpl> {
 
     public MavenTestDomainServiceInstanceFactory() {
     }
 
     @Override
     public void updateServiceInstance(MavenTestDomainServiceImpl instance, Map<String, String> attributes) {
-        if (attributes.containsKey("attr")) {
-            instance.setAttr(attributes.get("attr"));
+        if (attributes.containsKey("basedir")) {
+            instance.setBaseDir(attributes.get("basedir"));
         }
     }
 
@@ -44,7 +45,8 @@ public class MavenTestDomainServiceInstanceFactory implements ServiceInstanceFac
     @Override
     public ServiceDescriptor getDescriptor(ServiceDescriptor.Builder builder) {
         builder.name("service.name").description("service.description");
-        builder.attribute(builder.newAttribute().id("attr").name("service.attr.name").description("service.attr.description").build());
+        builder.attribute(builder.newAttribute().id("basedir").name("service.basedir.name")
+            .description("service.basedir.description").build());
         return builder.build();
     }
 }

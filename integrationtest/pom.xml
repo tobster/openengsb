@@ -82,7 +82,7 @@
       <version>${pom.version}</version>
       <scope>test</scope>
     </dependency>
-     <dependency>
+    <dependency>
       <groupId>org.openengsb.domains.report</groupId>
       <artifactId>openengsb-domains-report-implementation</artifactId>
       <version>${pom.version}</version>
@@ -91,6 +91,18 @@
     <dependency>
       <groupId>org.openengsb.domains.report</groupId>
       <artifactId>openengsb-domains-report-plaintext</artifactId>
+      <version>${pom.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.openengsb.domains.test</groupId>
+      <artifactId>openengsb-domains-test-implementation</artifactId>
+      <version>${pom.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.openengsb.domains.test</groupId>
+      <artifactId>openengsb-domains-test-maven</artifactId>
       <version>${pom.version}</version>
       <scope>test</scope>
     </dependency>
